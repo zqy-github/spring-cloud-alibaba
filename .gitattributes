@@ -1,0 +1,6 @@
+# windows-specific files require CRLF
+*.bat       eol=crlf
+*.text      eol=crlf
+# unix-specific files require LF
+*.java      eol=crlf
+*.sh        eol=crlf
