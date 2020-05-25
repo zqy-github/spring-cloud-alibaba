@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: rocketmq-consumer
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          namesrv-addr: 192.168.11.133:9876
+        bindings:
+          input: {consumer.orderly: true}
+      bindings:
+        input: {destination: DefaultCluster, content-type: text/plain, group: broker-a, consumer.maxAttempts: 1}
+server:
+  port: 9094
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
