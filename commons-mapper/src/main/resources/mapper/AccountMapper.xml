@@ -7,5 +7,9 @@
     -->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="balance" jdbcType="INTEGER" property="balance" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
   </resultMap>
 </mapper>

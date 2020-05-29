@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: prod
+  application:
+    name: service-reg-config
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
+        server-addr: 127.0.0.1:8848
