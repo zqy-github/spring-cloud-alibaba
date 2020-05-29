@@ -7,6 +7,7 @@ import com.zqy.commons.service.AccountService;
 import com.zqy.commons.utils.AbstractBaseResult;
 import com.zqy.commons.utils.BaseResultFactory;
 import com.zqy.commons.validator.BeanValidator;
+import com.zqy.service.reg.controller.service.Regsercvice;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -26,8 +27,8 @@ public class RegController extends AbstractBaseController<Account> {
     @Autowired
     private AccountService accountService;
 
-    @Autowired
-    private ConfigurableApplicationContext applicationContext;
+//    @Autowired
+//    private Regsercvice regsercvice;
 
     /**
      * 注册验证格式
@@ -55,6 +56,7 @@ public class RegController extends AbstractBaseController<Account> {
         account.setPassword(DigestUtils.md5DigestAsHex(account.getPassword().getBytes()));
         Account user = accountService.save(account);
         if (user != null) {
+//            regsercvice.sendEmail(account);
             response.setStatus(HttpStatus.CREATED.value());
             return success(request.getRequestURI(), user);
         }

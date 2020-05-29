@@ -10,16 +10,15 @@
         <relativePath>../dependencies/pom.xml</relativePath>
     </parent>
 
-    <artifactId>service-reg</artifactId>
+    <artifactId>service-email</artifactId>
     <packaging>jar</packaging>
 
-    <name>service-reg</name>
+    <name>service-email</name>
     <url>http://www.zqy.com</url>
     <inceptionYear>2018-Now</inceptionYear>
 
     <dependencies>
         <!-- Spring Boot Begin -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -35,10 +34,18 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <!-- Spring Boot End -->
 
         <!-- Spring Cloud Begin -->
@@ -54,17 +61,16 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+        </dependency>
         <!-- Spring Cloud End -->
 
         <!-- Projects Begin -->
         <dependency>
             <groupId>com.zqy</groupId>
-            <artifactId>commons-service</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zqy</groupId>
-            <artifactId>commons-mapper</artifactId>
+            <artifactId>commons-domain</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <!-- Projects End -->
@@ -76,7 +82,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.zqy.service.reg.ServiceRegApplication</mainClass>
+                    <mainClass>com.zqy.service.reg.ServiceEmailApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
