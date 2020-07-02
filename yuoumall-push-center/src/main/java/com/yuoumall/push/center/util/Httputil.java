@@ -1,6 +1,7 @@
 package com.yuoumall.push.center.util;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -23,9 +24,14 @@ public class Httputil {
             StringEntity rqEntity = new StringEntity(json, "utf-8");//解决中文乱码问题
             rqEntity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
             rqEntity.setContentType("application/json");
+            // 设置超时时间
+            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(3000).setConnectTimeout(3000).build();
+            httpPost.setConfig(requestConfig);
+            // 设置请求内容
             httpPost.setEntity(rqEntity);
             httpPost.setHeader("Content-type", "application/json");
             httpPost.setHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+
 
             //执行请求操作，并拿到结果（同步阻塞）
             CloseableHttpResponse response = httpClient.execute(httpPost);
