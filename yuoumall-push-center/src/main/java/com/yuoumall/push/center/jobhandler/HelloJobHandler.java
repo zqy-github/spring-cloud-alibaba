@@ -6,7 +6,9 @@ import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.log.XxlJobLogger;
 import com.yuoumall.push.center.bo.Admin;
 import com.yuoumall.push.center.service.AdminService;
+import com.yuoumall.push.center.service.imp.AdminServiceImp;
 import com.yuoumall.push.center.util.Httputil;
+import com.yuoumall.push.center.util.SpringContextUtil;
 import org.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,10 +52,10 @@ public class HelloJobHandler extends IJobHandler {
         Long startTs = System.currentTimeMillis();
         String msg = "XXL-JOB, Join Method " + " 任务开始时间:" + startTs;
         logs(msg);
-
+        AdminService adminService2 = (AdminService) SpringContextUtil.getBean(AdminService.class);
         Admin admin = null;
         try {
-            admin = adminService.selectByPrimaryKey(1);
+            admin = adminService2.selectByPrimaryKey(1);
         } catch (Exception e) {
             e.printStackTrace();
             return new ReturnT(ReturnT.FAIL_CODE, "获取失败");
