@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuoumall.push.center.mapper.AdminMapper">
+  <resultMap id="BaseResultMap" type="com.yuoumall.push.center.bo.Admin">
+    <!--@mbg.generated-->
+    <!--@Table `admin`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_disabled" jdbcType="TINYINT" property="isDisabled" />
+    <result column="popedom" jdbcType="TINYINT" property="popedom" />
+    <result column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="updated_at" jdbcType="INTEGER" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, is_disabled, popedom, account_id, created_at, updated_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `admin`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from `admin`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.yuoumall.push.center.bo.Admin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `admin` (is_disabled, popedom, account_id, 
+      created_at, updated_at)
+    values (#{isDisabled,jdbcType=TINYINT}, #{popedom,jdbcType=TINYINT}, #{accountId,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=INTEGER}, #{updatedAt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.yuoumall.push.center.bo.Admin" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `admin`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="isDisabled != null">
+        is_disabled,
+      </if>
+      <if test="popedom != null">
+        popedom,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="isDisabled != null">
+        #{isDisabled,jdbcType=TINYINT},
+      </if>
+      <if test="popedom != null">
+        #{popedom,jdbcType=TINYINT},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuoumall.push.center.bo.Admin">
+    <!--@mbg.generated-->
+    update `admin`
+    <set>
+      <if test="isDisabled != null">
+        is_disabled = #{isDisabled,jdbcType=TINYINT},
+      </if>
+      <if test="popedom != null">
+        popedom = #{popedom,jdbcType=TINYINT},
+      </if>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuoumall.push.center.bo.Admin">
+    <!--@mbg.generated-->
+    update `admin`
+    set is_disabled = #{isDisabled,jdbcType=TINYINT},
+      popedom = #{popedom,jdbcType=TINYINT},
+      account_id = #{accountId,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
