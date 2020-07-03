@@ -1,6 +1,6 @@
 package com.yuoumall.push.center.service.imp;
 
-import com.yuoumall.push.center.bo.*;
+import com.yuoumall.push.center.bo.SD001.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -34,15 +34,15 @@ public class MaraServiceImpl implements MaraService {
         if (mara != null) {
             HeadMara headMara = new HeadMara();
             BeanUtils.copyProperties(mara, headMara);
-            httpMara.setHeadMara(headMara);
+            httpMara.setHEAD(headMara);
 
             ItemMara itemMara = new ItemMara();
             BeanUtils.copyProperties(mara, itemMara);
-            httpMara.setItemMara(itemMara);
+            httpMara.setITEM(itemMara);
 
             PrcdMara prcdMara = new PrcdMara();
             BeanUtils.copyProperties(mara, prcdMara);
-            httpMara.setPrcdMara(prcdMara);
+            httpMara.setPRCD(prcdMara);
         }
         return httpMara;
     }

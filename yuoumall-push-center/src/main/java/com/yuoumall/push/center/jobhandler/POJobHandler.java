@@ -4,7 +4,7 @@ import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.IJobHandler;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.log.XxlJobLogger;
-import com.yuoumall.push.center.bo.HttpMara;
+import com.yuoumall.push.center.bo.SD001.HttpMara;
 import com.yuoumall.push.center.service.AdminService;
 import com.yuoumall.push.center.service.MaraService;
 import com.yuoumall.push.center.util.Httputil;

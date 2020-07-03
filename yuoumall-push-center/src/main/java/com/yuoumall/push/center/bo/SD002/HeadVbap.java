@@ -1,7 +1,6 @@
-package com.yuoumall.push.center.bo;
+package com.yuoumall.push.center.bo.SD002;
 
 import lombok.Data;
-
 
 /**
  * @Author ZQY
@@ -11,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-public class HeadMara {
+public class HeadVbap {
     /**
      * 订单类型
      */
@@ -68,52 +67,13 @@ public class HeadMara {
     private String waerk;
 
     /**
-     * 汇率
+     * 开始日期
      */
-    private String kursk;
-
-    /**
-     * 付款条件
-     */
-    private String zterm;
-
-    /**
-     * 订货原因
-     */
-    private String augru;
+    private String bedat;
 
     /**
      * 订单文本
      */
     private String ltext;
 
-    /**
-     * 名称1
-     */
-    private String name1;
-
-    /**
-     * 名称2
-     */
-    private String name2;
-
-    /**
-     * 国家码
-     */
-    private String land1;
-
-    /**
-     * 地区（省/自治区/直辖市、市、县）
-     */
-    private String regio;
-
-    /**
-     * 城市
-     */
-    private String city1;
-
-    /**
-     * 街道
-     */
-    private String street;
 }

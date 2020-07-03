@@ -1,4 +1,4 @@
-package com.yuoumall.push.center.bo;
+package com.yuoumall.push.center.bo.SD001;
 
 import lombok.Data;
 
