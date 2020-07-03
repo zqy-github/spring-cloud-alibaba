@@ -5,7 +5,10 @@ import com.xxl.job.core.handler.IJobHandler;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.log.XxlJobLogger;
 import com.yuoumall.push.center.bo.Admin;
+import com.yuoumall.push.center.bo.HttpMara;
+import com.yuoumall.push.center.bo.Mara;
 import com.yuoumall.push.center.service.AdminService;
+import com.yuoumall.push.center.service.MaraService;
 import com.yuoumall.push.center.service.imp.AdminServiceImp;
 import com.yuoumall.push.center.util.Httputil;
 import com.yuoumall.push.center.util.SpringContextUtil;
@@ -47,20 +50,21 @@ public class HelloJobHandler extends IJobHandler {
         return new ReturnT(result);
     }
 
-    @XxlJob("SD001")
-    public ReturnT<String> SD001(String param) throws Exception {
+//    @XxlJob("SD001")
+    public ReturnT<String> SD001() throws Exception {
         Long startTs = System.currentTimeMillis();
         String msg = "XXL-JOB, Join Method " + " 任务开始时间:" + startTs;
         logs(msg);
-        AdminService adminService2 = (AdminService) SpringContextUtil.getBean(AdminService.class);
-        Admin admin = null;
+        // 手动注入bean
+        MaraService maraService = (MaraService) SpringContextUtil.getBean(MaraService.class);
+        HttpMara mara = null;
         try {
-            admin = adminService2.selectByPrimaryKey(1);
+            mara = maraService.selectFormatMaraByPrimaryKey(1);
         } catch (Exception e) {
             e.printStackTrace();
             return new ReturnT(ReturnT.FAIL_CODE, "获取失败");
         }
-        msg = "XXL-JOB, 获取数据源:" + admin.toString();
+        msg = "XXL-JOB, 获取数据源:" + mara.toString();
         logs(msg);
 
         String PoUrl = "http://sap-pod.yuou.com:50000/RESTAdapter/SD001";
@@ -68,7 +72,7 @@ public class HelloJobHandler extends IJobHandler {
         logs(msg);
 
         // 请求po
-        JSONObject jsonObject = JSONObject.fromObject(admin);
+        JSONObject jsonObject = JSONObject.fromObject(mara);
         String result = Httputil.httpPostWithjson(PoUrl, jsonObject.toString());
         msg = "XXL-JOB, 获取到的PO返回参数 :" + result;
         logs(msg);
