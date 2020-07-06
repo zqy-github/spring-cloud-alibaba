@@ -1,6 +1,6 @@
 package com.yuoumall.push.center.service.imp;
 
-import com.yuoumall.push.center.bo.SD001.*;
+import com.yuoumall.push.center.entity.bo.SD001.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 

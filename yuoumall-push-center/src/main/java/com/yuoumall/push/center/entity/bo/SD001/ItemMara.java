@@ -1,6 +1,7 @@
-package com.yuoumall.push.center.bo.SD002;
+package com.yuoumall.push.center.entity.bo.SD001;
 
 import lombok.Data;
+
 
 /**
  * @Author ZQY
@@ -10,7 +11,7 @@ import lombok.Data;
  */
 
 @Data
-public class ItemVbap {
+public class ItemMara {
     /**
      * 行项目号
      */
@@ -32,6 +33,11 @@ public class ItemVbap {
     private String vrkme;
 
     /**
+     * 批次
+     */
+    private String charg;
+
+    /**
      * 利润中心
      */
     private String prctr;
@@ -40,6 +46,11 @@ public class ItemVbap {
      * 工厂
      */
     private String werks;
+
+    /**
+     * 储存地点
+     */
+    private String lgort;
 
     /**
      * 物料科目分配组
@@ -60,6 +71,16 @@ public class ItemVbap {
      * 区服编号
      */
     private String zzservi;
+
+    /**
+     * 平台客户编号
+     */
+    private String zzplatf;
+
+    /**
+     * 供应商编号
+     */
+    private String zzsuppl;
 
     /**
      * 预留字段1

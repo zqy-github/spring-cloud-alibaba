@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yuoumall.push.center.mapper.VbapMapper">
-  <resultMap id="BaseResultMap" type="com.yuoumall.push.center.bo.SD002.Vbap">
+  <resultMap id="BaseResultMap" type="com.yuoumall.push.center.entity.bo.SD002.Vbap">
     <!--@mbg.generated generated on Fri Jul 03 17:07:55 CST 2020.-->
     <!--@Table VBAP-->
     <id column="id" jdbcType="INTEGER" property="id" />

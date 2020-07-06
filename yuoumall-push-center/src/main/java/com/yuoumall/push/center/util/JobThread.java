@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
  * @Author ZQY
  * @Date 2020/7/3
  * @Version 1.0
- * @Description
+ * @Description 多线程请求（异步）
  */
 public class JobThread {
     public static void runJobThread(List<Object> list, String PoUrl, Long startTs) throws UnsupportedEncodingException {
@@ -24,7 +24,7 @@ public class JobThread {
                     @SneakyThrows
                     public void run() {
                         JSONObject jsonObject = JSONObject.fromObject(object);
-                        String result = Httputil.httpPostWithjson(PoUrl, jsonObject.toString());
+                        String result = HttpUtil.httpPostWithjson(PoUrl, jsonObject.toString());
                         String inMsg = "XXL-JOB, 获取到的PO返回参数 :" + result;
                         POJobHandler.logs(inMsg);
                     }

@@ -1,6 +1,6 @@
 package com.yuoumall.push.center.mapper;
 
-import com.yuoumall.push.center.bo.SD001.Mara;
+import com.yuoumall.push.center.entity.bo.SD001.Mara;
 import tk.mybatis.mapper.common.Mapper;
 
 /**

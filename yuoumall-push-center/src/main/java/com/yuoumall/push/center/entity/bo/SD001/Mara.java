@@ -1,4 +1,4 @@
-package com.yuoumall.push.center.bo.SD002;
+package com.yuoumall.push.center.entity.bo.SD001;
 
 import javax.persistence.*;
 import lombok.Data;
@@ -10,8 +10,8 @@ import lombok.Data;
  * @Description 
  */
 @Data
-@Table(name = "VBAP")
-public class Vbap {
+@Table(name = "MARA")
+public class Mara {
     @Id
     @Column(name = "id")
     private Integer id;
@@ -83,16 +83,64 @@ public class Vbap {
     private String waerk;
 
     /**
-     * 开始日期
+     * 汇率
      */
-    @Column(name = "BEDAT")
-    private String bedat;
+    @Column(name = "KURSK")
+    private String kursk;
+
+    /**
+     * 付款条件
+     */
+    @Column(name = "ZTERM")
+    private String zterm;
+
+    /**
+     * 订货原因
+     */
+    @Column(name = "AUGRU")
+    private String augru;
 
     /**
      * 订单文本
      */
     @Column(name = "LTEXT")
     private String ltext;
+
+    /**
+     * 名称1
+     */
+    @Column(name = "NAME1")
+    private String name1;
+
+    /**
+     * 名称2
+     */
+    @Column(name = "NAME2")
+    private String name2;
+
+    /**
+     * 国家码
+     */
+    @Column(name = "LAND1")
+    private String land1;
+
+    /**
+     * 地区（省/自治区/直辖市、市、县）
+     */
+    @Column(name = "REGIO")
+    private String regio;
+
+    /**
+     * 城市
+     */
+    @Column(name = "CITY1")
+    private String city1;
+
+    /**
+     * 街道
+     */
+    @Column(name = "STREET")
+    private String street;
 
     /**
      * 行项目号
@@ -119,6 +167,12 @@ public class Vbap {
     private String vrkme;
 
     /**
+     * 批次
+     */
+    @Column(name = "CHARG")
+    private String charg;
+
+    /**
      * 利润中心
      */
     @Column(name = "PRCTR")
@@ -129,6 +183,12 @@ public class Vbap {
      */
     @Column(name = "WERKS")
     private String werks;
+
+    /**
+     * 储存地点
+     */
+    @Column(name = "LGORT")
+    private String lgort;
 
     /**
      * 物料科目分配组
@@ -153,6 +213,18 @@ public class Vbap {
      */
     @Column(name = "ZZSERVI")
     private String zzservi;
+
+    /**
+     * 平台客户编号
+     */
+    @Column(name = "ZZPLATF")
+    private String zzplatf;
+
+    /**
+     * 供应商编号
+     */
+    @Column(name = "ZZSUPPL")
+    private String zzsuppl;
 
     /**
      * 预留字段1
@@ -183,22 +255,4 @@ public class Vbap {
      */
     @Column(name = "KBETR")
     private String kbetr;
-
-    /**
-     * 开票日期
-     */
-    @Column(name = "AFDAT")
-    private String afdat;
-
-    /**
-     * 百分比
-     */
-    @Column(name = "FPROZ")
-    private String fproz;
-
-    /**
-     * 开票金额
-     */
-    @Column(name = "FAKWR")
-    private String fakwr;
 }

@@ -4,10 +4,9 @@ import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.IJobHandler;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.log.XxlJobLogger;
-import com.yuoumall.push.center.bo.SD001.HttpMara;
-import com.yuoumall.push.center.service.AdminService;
+import com.yuoumall.push.center.entity.bo.SD001.HttpMara;
 import com.yuoumall.push.center.service.MaraService;
-import com.yuoumall.push.center.util.Httputil;
+import com.yuoumall.push.center.util.HttpUtil;
 import com.yuoumall.push.center.util.SpringContextUtil;
 import org.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -32,9 +31,6 @@ public class POJobHandler extends IJobHandler {
     public static POJobHandler getInstance() {
         return instance;
     }
-
-    @Autowired
-    private AdminService adminService;
 
     @Override
     @XxlJob("SD")
@@ -68,7 +64,7 @@ public class POJobHandler extends IJobHandler {
         msg = "XXL-JOB, 获取数据源:" + mara.toString();
         logs(msg);
 
-        String PoUrl = "http://120.55.80.85:50000/RESTAdapter/SD001";
+        String PoUrl = "/RESTAdapter/SD001";
         msg = "XXL-JOB 开始请求PO连接：" + PoUrl;
         logs(msg);
 
@@ -87,7 +83,7 @@ public class POJobHandler extends IJobHandler {
         } else {
             // 请求po
             JSONObject jsonObject = JSONObject.fromObject(mara);
-            String result = Httputil.httpPostWithjson(PoUrl, jsonObject.toString());
+            String result = HttpUtil.httpPostWithjson(PoUrl, jsonObject.toString());
             msg = "XXL-JOB, 获取到的PO返回参数 :" + result;
             logs(msg);
 
@@ -102,6 +98,7 @@ public class POJobHandler extends IJobHandler {
             return new ReturnT(jsonArray == null ? "" : jsonArray.toString());
         }
     }
+
 
 
     public static void logs(String msg) throws UnsupportedEncodingException {

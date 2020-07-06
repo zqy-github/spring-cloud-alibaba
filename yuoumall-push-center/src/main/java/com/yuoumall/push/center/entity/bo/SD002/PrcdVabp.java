@@ -1,4 +1,4 @@
-package com.yuoumall.push.center.bo.SD002;
+package com.yuoumall.push.center.entity.bo.SD002;
 
 import lombok.Data;
 

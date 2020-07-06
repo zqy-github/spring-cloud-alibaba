@@ -1,6 +1,6 @@
 package com.yuoumall.push.center.service;
 
-import com.yuoumall.push.center.bo.SD002.HttpVbap;
+import com.yuoumall.push.center.entity.bo.SD002.HttpVbap;
 
 /**
  * @Author ZQY

@@ -1,7 +1,7 @@
 package com.yuoumall.push.center.service;
 
-import com.yuoumall.push.center.bo.SD001.HttpMara;
-import com.yuoumall.push.center.bo.SD001.Mara;
+import com.yuoumall.push.center.entity.bo.SD001.HttpMara;
+import com.yuoumall.push.center.entity.bo.SD001.Mara;
 
 /**
  * @Author ZQY
