@@ -4,21 +4,29 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.zqy</groupId>
-        <artifactId>dependencies</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../dependencies/pom.xml</relativePath>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.6.RELEASE</version>
     </parent>
 
     <artifactId>yuoumall-push-center</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>yuoumall-push-center</name>
     <url>http://www.zqy.com</url>
-    <inceptionYear>2018-Now</inceptionYear>
+    <inceptionYear>2020-Now</inceptionYear>
 
     <properties>
         <druid.version>1.1.20</druid.version>
+        <mysql.version>8.0.13</mysql.version>
+        <xxl-job.version>2.2.0</xxl-job.version>
+        <mybatis.version>2.1.5</mybatis.version>
+        <pagehelper.version>1.2.13</pagehelper.version>
+        <hynnet.version>2.4</hynnet.version>
+        <json.version>20180813</json.version>
+        <httpcomponents.version>4.5.12</httpcomponents.version>
+        <swagger2.version>2.9.2</swagger2.version>
     </properties>
 
     <dependencies>
@@ -44,20 +52,21 @@
         <dependency>
             <groupId>com.xuxueli</groupId>
             <artifactId>xxl-job-core</artifactId>
-            <version>2.2.0</version>
+            <version>${xxl-job.version}</version>
         </dependency>
 
         <!-- mysql -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
 
         <!--mybatis-->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>2.1.5</version>
+            <version>${mybatis.version}</version>
         </dependency>
 
         <!--Lombok-->
@@ -78,38 +87,38 @@
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.13</version>
+            <version>${pagehelper.version}</version>
         </dependency>
         <!--json 插件 -->
         <dependency>
             <groupId>com.hynnet</groupId>
             <artifactId>json-lib</artifactId>
-            <version>2.4</version>
+            <version>${hynnet.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20180813</version>
+            <version>${json.version}</version>
         </dependency>
 
         <!--Http 插件 -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.12</version>
+            <version>${httpcomponents.version}</version>
         </dependency>
 
         <!--接口api文档 swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger2.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger2.version}</version>
         </dependency>
 
 

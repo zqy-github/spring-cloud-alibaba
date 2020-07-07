@@ -1,4 +1,4 @@
-package com.yuoumall.push.center.entity.bto;
+package com.yuoumall.push.center.entity.bto.SD002;
 
 import com.yuoumall.push.center.entity.bo.SD002.BplnVabp;
 import com.yuoumall.push.center.entity.bo.SD002.HeadVbap;

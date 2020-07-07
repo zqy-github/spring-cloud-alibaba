@@ -1,7 +1,6 @@
 package com.yuoumall.push.center.service.imp;
 
 import com.yuoumall.push.center.entity.bo.SD002.*;
-import com.yuoumall.push.center.entity.bto.RqHttpVbap;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
