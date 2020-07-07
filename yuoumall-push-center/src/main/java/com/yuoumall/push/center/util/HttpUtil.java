@@ -1,6 +1,6 @@
 package com.yuoumall.push.center.util;
 
-import com.xxl.job.core.biz.model.ReturnT;
+import com.yuoumall.push.center.model.ReturnT;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
@@ -91,26 +91,32 @@ public class HttpUtil {
         }
     }
 
-    public static ReturnT sendDatas(String port, Object object, Long startTs) {
-        String PoUrl = "/RESTAdapter/" + port;
-        String msg = "开始请求PO连接：" + PoUrl;
-        logs(msg);
+    public static ReturnT sendDatas(String path, Object object) {
+        Long startTs = System.currentTimeMillis();
+        String PoUrl = "/RESTAdapter/" + path;
+        logs("开始请求PO连接：" + PoUrl);
         JSONObject jsonObject = JSONObject.fromObject(object);
         String result = HttpUtil.httpPostWithjson(PoUrl, jsonObject.toString());
 
         if (result == null) {
             Long endTs = System.currentTimeMillis();
-            msg = "请求PO异常, 结束, 耗时 :" + (endTs - startTs);
-            logs(msg);
+            logs("请求PO异常, 结束, 耗时 :" + (endTs - startTs));
             return new ReturnT(ReturnT.FAIL_CODE, "请求PO异常, 结束");
         }
-        msg = "获取到的PO返回参数 :" + result;
-        logs(msg);
 
+        logs("获取到的PO返回参数 :" + result);
+        String rtcod = null;
+        try {
+            JSONObject resultJson = JSONObject.fromObject(result);
+            logs("PO返回参数转换为json :" + resultJson.toString());
+            rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
+            logs("PO请求返回结果 :" + rtcod);
+        } catch (Exception e) {
+            logs("PO返回参数转换为json异常, 结束");
+        }
         Long endTs = System.currentTimeMillis();
-        msg = "结束，耗时 :" + (endTs - startTs);
-        logs(msg);
-        return new ReturnT(ReturnT.SUCCESS_CODE, result);
+        logs("结束，耗时 :" + (endTs - startTs));
+        return new ReturnT(ReturnT.SUCCESS_CODE, rtcod, result);
     }
 
     public static void logs(String msg) {

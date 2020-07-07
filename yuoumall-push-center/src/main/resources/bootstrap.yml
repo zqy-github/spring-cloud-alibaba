@@ -1,0 +1,51 @@
+server:
+  port: 8081
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: yuoumall-push-center
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  sleuth:
+    sampler:
+      probability: 1.0
+  #  profiles:
+  #    active: dev
+  #  cloud:
+  #    stream:
+  #      bindings:
+  #        Operate_Log_Output: {destination: OperateLogTopic, content-type: application/json,group: operateLog}
+  #        Operate_Log_Input: {destination: OperateLogTopic, content-type: application/json,group: operateLog}
+  #    nacos:
+  #      config:
+  #        server-addr: yuoumall-nacos-dev:8848
+  #        file-extension: yml
+  #        group: DEFAULT_GROUP
+  #      discovery:
+  #        server-addr: yuoumall-nacos-dev:8848
+
+  #  zipkin:
+  #    base-url: http://
+  #    discovery-client-enabled: false
+#xxl:
+#  job:
+#    admin:
+#      addresses: http://39.99.52.221:30414/xxl-job-admin
+#    accessToken:
+#    executor:
+#      appname: ${spring.application.name}
+#      address:
+#      ip:
+#      port: 9999
+#      logpath: /data/applogs/xxl-job/jobhandler
+#      logretentiondays: 30

@@ -1,6 +1,7 @@
 package com.yuoumall.push.center.jobhandler;
 
-import com.xxl.job.core.biz.model.ReturnT;
+import com.yuoumall.push.center.entity.bto.SD001.SD001SCREQ;
+import com.yuoumall.push.center.model.ReturnT;
 import com.xxl.job.core.handler.IJobHandler;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.log.XxlJobLogger;
@@ -33,8 +34,8 @@ public class POJobHandler extends IJobHandler {
     }
 
     @Override
-    @XxlJob("SD")
-    public ReturnT<String> execute(String param) throws Exception {
+    @XxlJob("SD2SC")
+    public ReturnT execute(String param) throws Exception {
         String result = null;
         for (Method m : POJobHandler.class.getMethods()) {
             if (m.getName().indexOf(param) == 0) {
@@ -47,58 +48,36 @@ public class POJobHandler extends IJobHandler {
         return new ReturnT(result);
     }
 
-    //    @XxlJob("SD001")
     public ReturnT SD001() throws Exception {
         Long startTs = System.currentTimeMillis();
-        String msg = "XXL-JOB, Join Method " + " 任务开始时间:" + startTs;
-        logs(msg);
+        logs("XXL-JOB, Join Method " + " 任务开始时间:" + startTs);
+
         // 手动注入bean
-        MaraService maraService = (MaraService) SpringContextUtil.getBean(MaraService.class);
-        HttpMara mara = null;
-        try {
-            mara = maraService.selectFormatMaraByPrimaryKey(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ReturnT(ReturnT.FAIL_CODE, "获取失败");
-        }
-        msg = "XXL-JOB, 获取数据源:" + mara.toString();
-        logs(msg);
+        MaraService maraService = SpringContextUtil.getBean(MaraService.class);
 
-        String PoUrl = "/RESTAdapter/SD001";
-        msg = "XXL-JOB 开始请求PO连接：" + PoUrl;
-        logs(msg);
+        List<SD001SCREQ> mara = maraService.selectFormatMaraByStatusNo();
 
+        logs("XXL-JOB, 获取到源数据:" + mara.toString());
 
-        //多线程请求
-        List list = new ArrayList();
-        list.add(mara);
-        list.add(mara);
-        list.add(mara);
+        String PoUrl = "SD001";
+        logs("XXL-JOB 开始请求PO连接：" + PoUrl);
 
-        if (list instanceof List) {
-
-            runJobThread(list, PoUrl, startTs);
-
+        if (mara instanceof List) {
+            runJobThread(mara, PoUrl, startTs);
             return new ReturnT(ReturnT.SUCCESS_CODE, "end");
         } else {
             // 请求po
             JSONObject jsonObject = JSONObject.fromObject(mara);
             String result = HttpUtil.httpPostWithjson(PoUrl, jsonObject.toString());
-            msg = "XXL-JOB, 获取到的PO返回参数 :" + result;
-            logs(msg);
 
-            JSONArray jsonArray = null;
-            if (result != null && result != "") {
-                jsonArray = new JSONArray(result);
-            }
+            logs("XXL-JOB, 获取到的PO返回参数 :" + result);
 
             Long endTs = System.currentTimeMillis();
-            msg = "XXL-JOB, 结束，耗时 :" + (endTs - startTs);
-            logs(msg);
-            return new ReturnT(jsonArray == null ? "" : jsonArray.toString());
+            logs("XXL-JOB, 结束，耗时 :" + (endTs - startTs));
+
+            return new ReturnT(result == null ? "" : result);
         }
     }
-
 
 
     public static void logs(String msg) throws UnsupportedEncodingException {

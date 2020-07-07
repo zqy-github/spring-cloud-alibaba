@@ -1,6 +1,7 @@
 package com.yuoumall.push.center.util;
 
 import com.yuoumall.push.center.jobhandler.POJobHandler;
+import com.yuoumall.push.center.model.ReturnT;
 import lombok.SneakyThrows;
 import net.sf.json.JSONObject;
 
@@ -16,16 +17,15 @@ import java.util.concurrent.Executors;
  * @Description 多线程请求（异步）
  */
 public class JobThread {
-    public static void runJobThread(List<Object> list, String PoUrl, Long startTs) throws UnsupportedEncodingException {
+    public static void runJobThread(List list, String PoUrl, Long startTs) throws UnsupportedEncodingException {
         if (list.size() > 0) {
             ExecutorService es = Executors.newFixedThreadPool(list.size());
             for (Object object : list) {
                 Runnable r = new Runnable() {
                     @SneakyThrows
                     public void run() {
-                        JSONObject jsonObject = JSONObject.fromObject(object);
-                        String result = HttpUtil.httpPostWithjson(PoUrl, jsonObject.toString());
-                        String inMsg = "XXL-JOB, 获取到的PO返回参数 :" + result;
+                        ReturnT result = HttpUtil.sendDatas(PoUrl, object);
+                        String inMsg = "XXL-JOB, 获取到的PO返回参数 :" + result.toString();
                         POJobHandler.logs(inMsg);
                     }
                 };

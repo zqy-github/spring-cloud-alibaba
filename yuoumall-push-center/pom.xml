@@ -27,6 +27,7 @@
         <json.version>20180813</json.version>
         <httpcomponents.version>4.5.12</httpcomponents.version>
         <swagger2.version>2.9.2</swagger2.version>
+        <spring-cloud-context.version>2.0.4.RELEASE</spring-cloud-context.version>
     </properties>
 
     <dependencies>
@@ -40,6 +41,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!-- bootstrap -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
+            <version>${spring-cloud-context.version}</version>
         </dependency>
 
         <dependency>

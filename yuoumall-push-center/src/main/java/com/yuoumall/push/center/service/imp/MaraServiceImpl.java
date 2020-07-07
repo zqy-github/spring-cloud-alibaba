@@ -1,6 +1,8 @@
 package com.yuoumall.push.center.service.imp;
 
 import com.yuoumall.push.center.entity.bo.SD001.*;
+import com.yuoumall.push.center.entity.bto.SD001.RqHttpMara;
+import com.yuoumall.push.center.entity.bto.SD001.SD001SCREQ;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,8 @@ import javax.annotation.Resource;
 
 import com.yuoumall.push.center.mapper.MaraMapper;
 import com.yuoumall.push.center.service.MaraService;
+
+import java.util.List;
 
 /**
  * @Author ZQY
@@ -45,5 +49,34 @@ public class MaraServiceImpl implements MaraService {
             httpMara.setPRCD(prcdMara);
         }
         return httpMara;
+    }
+
+    @Override
+    public List<SD001SCREQ> selectFormatMaraByStatusNo() {
+        List<Mara> maraList = maraMapper.selectFormatMaraByStatusNo();
+        List<SD001SCREQ> returnList = null;
+        if (maraList.size() > 0) {
+            maraList.forEach(item -> {
+                RqHttpMara mara = new RqHttpMara();
+
+                HeadMara headMara = new HeadMara();
+                BeanUtils.copyProperties(item, headMara);
+                mara.setHEAD(headMara);
+
+                ItemMara itemMara = new ItemMara();
+                BeanUtils.copyProperties(item, itemMara);
+                mara.setITEM(itemMara);
+
+                PrcdMara prcdMara = new PrcdMara();
+                BeanUtils.copyProperties(item, prcdMara);
+                mara.setPRCD(prcdMara);
+
+                SD001SCREQ screq = new SD001SCREQ();
+                screq.setDT_SD001_SC_REQ(mara);
+
+                returnList.add(screq);
+            });
+        }
+        return returnList;
     }
 }

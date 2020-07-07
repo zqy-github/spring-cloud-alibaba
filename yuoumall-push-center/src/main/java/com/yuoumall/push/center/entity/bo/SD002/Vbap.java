@@ -201,4 +201,10 @@ public class Vbap {
      */
     @Column(name = "FAKWR")
     private String fakwr;
+
+    /**
+     * 状态 0 未提交 1 已提交
+     */
+    @Column(name = "status")
+    private String status;
 }

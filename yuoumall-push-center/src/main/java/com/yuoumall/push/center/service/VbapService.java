@@ -1,6 +1,9 @@
 package com.yuoumall.push.center.service;
 
 import com.yuoumall.push.center.entity.bo.SD002.HttpVbap;
+import com.yuoumall.push.center.entity.bto.SD002.SD002SCREQ;
+
+import java.util.List;
 
 /**
  * @Author ZQY
@@ -10,4 +13,11 @@ import com.yuoumall.push.center.entity.bo.SD002.HttpVbap;
  */
 public interface VbapService {
     HttpVbap selectFormatVbapByPrimaryKey(int i);
+
+
+    /**
+     * 获取未请求的数据
+     * @return
+     */
+    List<SD002SCREQ> selectFormatVbapByStatusNo();
 }

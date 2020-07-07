@@ -1,8 +1,9 @@
 package com.yuoumall.push.center.controller;
 
-import com.xxl.job.core.biz.model.ReturnT;
+import com.yuoumall.push.center.model.ReturnT;
 import com.yuoumall.push.center.entity.bto.SD001.SD001SCREQ;
 import com.yuoumall.push.center.entity.bto.SD002.SD002SCREQ;
+import com.yuoumall.push.center.entity.bto.SD003.SD003SCREQ;
 import com.yuoumall.push.center.util.HttpUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,31 +29,30 @@ public class TransferController {
     @ApiOperation(value = "SD001-销售订单创建接口")
     @PostMapping("/SD001")
     public ReturnT SD001(@RequestBody SD001SCREQ mara) {
-        Long startTs = System.currentTimeMillis();
-        String msg = "Join Method " + " 任务开始时间:" + startTs;
-        logs(msg);
-        ReturnT returnT = new ReturnT(ReturnT.FAIL_CODE, "请求参数异常");
+        ReturnT returnT = null;
         if (mara.getDT_SD001_SC_REQ() != null) {
-            returnT = HttpUtil.sendDatas("SD001", mara, startTs);
+            returnT = HttpUtil.sendDatas("SD001", mara);
         }
-        return returnT;
+        return returnT == null ? new ReturnT(ReturnT.FAIL_CODE, "请求参数异常") : returnT;
     }
 
     @ApiOperation(value = "SD002-服务订单创建接口")
     @PostMapping("/SD002")
     public ReturnT SD002(@RequestBody SD002SCREQ vbap) {
-        Long startTs = System.currentTimeMillis();
-        String msg = "Join Method " + " 任务开始时间:" + startTs;
-        logs(msg);
-        ReturnT returnT = new ReturnT(ReturnT.FAIL_CODE, "请求参数异常");
+        ReturnT returnT = null;
         if (vbap.getDT_SD002_SC_REQ() != null) {
-            returnT = HttpUtil.sendDatas("SD002", vbap, startTs);
+            returnT = HttpUtil.sendDatas("SD002", vbap);
         }
-        return returnT;
+        return returnT == null ? new ReturnT(ReturnT.FAIL_CODE, "请求参数异常") : returnT;
     }
 
-
-    public void logs(String msg) {
-        System.out.println(msg);
+    @ApiOperation(value = "SD003-退货订单创建接口")
+    @PostMapping("/SD003")
+    public ReturnT SD003(@RequestBody SD003SCREQ vbak) {
+        ReturnT returnT = null;
+        if (vbak.getDT_SD003_SC_REQ() != null) {
+            returnT = HttpUtil.sendDatas("SD003", vbak);
+        }
+        return returnT == null ? new ReturnT(ReturnT.FAIL_CODE, "请求参数异常") : returnT;
     }
 }

@@ -1,6 +1,8 @@
 package com.yuoumall.push.center.service.imp;
 
 import com.yuoumall.push.center.entity.bo.SD002.*;
+import com.yuoumall.push.center.entity.bto.SD002.RqHttpVbap;
+import com.yuoumall.push.center.entity.bto.SD002.SD002SCREQ;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,8 @@ import javax.annotation.Resource;
 
 import com.yuoumall.push.center.mapper.VbapMapper;
 import com.yuoumall.push.center.service.VbapService;
+
+import java.util.List;
 
 /**
  * @Author ZQY
@@ -43,5 +47,38 @@ public class VbapServiceImpl implements VbapService {
             httpVbap.setBPLN(bplnVabp);
         }
         return httpVbap;
+    }
+
+    @Override
+    public List<SD002SCREQ> selectFormatVbapByStatusNo() {
+        List<Vbap> vbapList = vbapMapper.selectFormatVbapByStatusNo();
+        List<SD002SCREQ> returnList = null;
+        if (vbapList.size() > 0) {
+            vbapList.forEach(item -> {
+                RqHttpVbap vbap = new RqHttpVbap();
+
+                HeadVbap headVbap = new HeadVbap();
+                BeanUtils.copyProperties(item, headVbap);
+                vbap.setHEAD(headVbap);
+
+                ItemVbap itemVbap = new ItemVbap();
+                BeanUtils.copyProperties(item, itemVbap);
+                vbap.setITEM(itemVbap);
+
+                BplnVabp bplnVabp = new BplnVabp();
+                BeanUtils.copyProperties(item, bplnVabp);
+                vbap.setBPLN(bplnVabp);
+
+                PrcdVabp prcdVabp = new PrcdVabp();
+                BeanUtils.copyProperties(item, prcdVabp);
+                vbap.setPRCD(prcdVabp);
+
+                SD002SCREQ screq = new SD002SCREQ();
+                screq.setDT_SD002_SC_REQ(vbap);
+
+                returnList.add(screq);
+            });
+        }
+        return returnList;
     }
 }

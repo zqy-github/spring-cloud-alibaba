@@ -1,56 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yuoumall.push.center.mapper.MaraMapper">
-  <resultMap id="BaseResultMap" type="com.yuoumall.push.center.entity.bo.SD001.Mara">
-    <!--@mbg.generated generated on Fri Jul 03 09:59:09 CST 2020.-->
-    <!--@Table MARA-->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="AUART" jdbcType="VARCHAR" property="auart" />
-    <result column="VKORG" jdbcType="VARCHAR" property="vkorg" />
-    <result column="VTWEG" jdbcType="VARCHAR" property="vtweg" />
-    <result column="SPART" jdbcType="VARCHAR" property="spart" />
-    <result column="VKBUR" jdbcType="VARCHAR" property="vkbur" />
-    <result column="VKGRP" jdbcType="VARCHAR" property="vkgrp" />
-    <result column="KUNNR" jdbcType="VARCHAR" property="kunnr" />
-    <result column="BSTKD" jdbcType="VARCHAR" property="bstkd" />
-    <result column="BSTDK" jdbcType="VARCHAR" property="bstdk" />
-    <result column="VDATU" jdbcType="VARCHAR" property="vdatu" />
-    <result column="WAERK" jdbcType="VARCHAR" property="waerk" />
-    <result column="KURSK" jdbcType="VARCHAR" property="kursk" />
-    <result column="ZTERM" jdbcType="VARCHAR" property="zterm" />
-    <result column="AUGRU" jdbcType="VARCHAR" property="augru" />
-    <result column="LTEXT" jdbcType="VARCHAR" property="ltext" />
-    <result column="NAME1" jdbcType="VARCHAR" property="name1" />
-    <result column="NAME2" jdbcType="VARCHAR" property="name2" />
-    <result column="LAND1" jdbcType="VARCHAR" property="land1" />
-    <result column="REGIO" jdbcType="VARCHAR" property="regio" />
-    <result column="CITY1" jdbcType="VARCHAR" property="city1" />
-    <result column="STREET" jdbcType="VARCHAR" property="street" />
-    <result column="POSNR" jdbcType="VARCHAR" property="posnr" />
-    <result column="MATNR" jdbcType="VARCHAR" property="matnr" />
-    <result column="KWMENG" jdbcType="VARCHAR" property="kwmeng" />
-    <result column="VRKME" jdbcType="VARCHAR" property="vrkme" />
-    <result column="CHARG" jdbcType="VARCHAR" property="charg" />
-    <result column="PRCTR" jdbcType="VARCHAR" property="prctr" />
-    <result column="WERKS" jdbcType="VARCHAR" property="werks" />
-    <result column="LGORT" jdbcType="VARCHAR" property="lgort" />
-    <result column="KTGRM" jdbcType="VARCHAR" property="ktgrm" />
-    <result column="ZZORDNO" jdbcType="VARCHAR" property="zzordno" />
-    <result column="ZZSTORE" jdbcType="VARCHAR" property="zzstore" />
-    <result column="ZZSERVI" jdbcType="VARCHAR" property="zzservi" />
-    <result column="ZZPLATF" jdbcType="VARCHAR" property="zzplatf" />
-    <result column="ZZSUPPL" jdbcType="VARCHAR" property="zzsuppl" />
-    <result column="ZZOR001" jdbcType="VARCHAR" property="zzor001" />
-    <result column="ZZOR002" jdbcType="VARCHAR" property="zzor002" />
-    <result column="PARTNER" jdbcType="VARCHAR" property="partner" />
-    <result column="KSCHL" jdbcType="VARCHAR" property="kschl" />
-    <result column="KBETR" jdbcType="VARCHAR" property="kbetr" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated generated on Fri Jul 03 09:59:09 CST 2020.-->
-    id, AUART, VKORG, VTWEG, SPART, VKBUR, VKGRP, KUNNR, BSTKD, BSTDK, VDATU, WAERK, 
-    KURSK, ZTERM, AUGRU, LTEXT, NAME1, NAME2, LAND1, REGIO, CITY1, STREET, POSNR, MATNR, 
-    KWMENG, VRKME, CHARG, PRCTR, WERKS, LGORT, KTGRM, ZZORDNO, ZZSTORE, ZZSERVI, ZZPLATF, 
-    ZZSUPPL, ZZOR001, ZZOR002, PARTNER, KSCHL, KBETR
-  </sql>
+    <resultMap id="BaseResultMap" type="com.yuoumall.push.center.entity.bo.SD001.Mara">
+        <!--@mbg.generated generated on Fri Jul 03 09:59:09 CST 2020.-->
+        <!--@Table MARA-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="AUART" jdbcType="VARCHAR" property="auart"/>
+        <result column="VKORG" jdbcType="VARCHAR" property="vkorg"/>
+        <result column="VTWEG" jdbcType="VARCHAR" property="vtweg"/>
+        <result column="SPART" jdbcType="VARCHAR" property="spart"/>
+        <result column="VKBUR" jdbcType="VARCHAR" property="vkbur"/>
+        <result column="VKGRP" jdbcType="VARCHAR" property="vkgrp"/>
+        <result column="KUNNR" jdbcType="VARCHAR" property="kunnr"/>
+        <result column="BSTKD" jdbcType="VARCHAR" property="bstkd"/>
+        <result column="BSTDK" jdbcType="VARCHAR" property="bstdk"/>
+        <result column="VDATU" jdbcType="VARCHAR" property="vdatu"/>
+        <result column="WAERK" jdbcType="VARCHAR" property="waerk"/>
+        <result column="KURSK" jdbcType="VARCHAR" property="kursk"/>
+        <result column="ZTERM" jdbcType="VARCHAR" property="zterm"/>
+        <result column="AUGRU" jdbcType="VARCHAR" property="augru"/>
+        <result column="LTEXT" jdbcType="VARCHAR" property="ltext"/>
+        <result column="NAME1" jdbcType="VARCHAR" property="name1"/>
+        <result column="NAME2" jdbcType="VARCHAR" property="name2"/>
+        <result column="LAND1" jdbcType="VARCHAR" property="land1"/>
+        <result column="REGIO" jdbcType="VARCHAR" property="regio"/>
+        <result column="CITY1" jdbcType="VARCHAR" property="city1"/>
+        <result column="STREET" jdbcType="VARCHAR" property="street"/>
+        <result column="POSNR" jdbcType="VARCHAR" property="posnr"/>
+        <result column="MATNR" jdbcType="VARCHAR" property="matnr"/>
+        <result column="KWMENG" jdbcType="VARCHAR" property="kwmeng"/>
+        <result column="VRKME" jdbcType="VARCHAR" property="vrkme"/>
+        <result column="CHARG" jdbcType="VARCHAR" property="charg"/>
+        <result column="PRCTR" jdbcType="VARCHAR" property="prctr"/>
+        <result column="WERKS" jdbcType="VARCHAR" property="werks"/>
+        <result column="LGORT" jdbcType="VARCHAR" property="lgort"/>
+        <result column="KTGRM" jdbcType="VARCHAR" property="ktgrm"/>
+        <result column="ZZORDNO" jdbcType="VARCHAR" property="zzordno"/>
+        <result column="ZZSTORE" jdbcType="VARCHAR" property="zzstore"/>
+        <result column="ZZSERVI" jdbcType="VARCHAR" property="zzservi"/>
+        <result column="ZZPLATF" jdbcType="VARCHAR" property="zzplatf"/>
+        <result column="ZZSUPPL" jdbcType="VARCHAR" property="zzsuppl"/>
+        <result column="ZZOR001" jdbcType="VARCHAR" property="zzor001"/>
+        <result column="ZZOR002" jdbcType="VARCHAR" property="zzor002"/>
+        <result column="PARTNER" jdbcType="VARCHAR" property="partner"/>
+        <result column="KSCHL" jdbcType="VARCHAR" property="kschl"/>
+        <result column="KBETR" jdbcType="VARCHAR" property="kbetr"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Fri Jul 03 09:59:09 CST 2020.-->
+        id, AUART, VKORG, VTWEG, SPART, VKBUR, VKGRP, KUNNR, BSTKD, BSTDK, VDATU, WAERK,
+        KURSK, ZTERM, AUGRU, LTEXT, NAME1, NAME2, LAND1, REGIO, CITY1, STREET, POSNR, MATNR,
+        KWMENG, VRKME, CHARG, PRCTR, WERKS, LGORT, KTGRM, ZZORDNO, ZZSTORE, ZZSERVI, ZZPLATF,
+        ZZSUPPL, ZZOR001, ZZOR002, PARTNER, KSCHL, KBETR
+    </sql>
+
+    <select id="selectFormatMaraByStatusNo" resultMap="BaseResultMap">
+        select * from MARA where status = 0 limit 10;
+    </select>
 </mapper>
