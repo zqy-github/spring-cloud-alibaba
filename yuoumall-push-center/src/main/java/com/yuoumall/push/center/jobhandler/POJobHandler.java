@@ -49,55 +49,64 @@ public class POJobHandler extends IJobHandler {
 
     public ReturnY SD001() throws Exception {
         Long startTs = System.currentTimeMillis();
-        logs("XXL-JOB, Join Method " + " 任务开始时间:" + startTs);
+        logs("XXL-JOB-SD001, Join Method " + " 任务开始时间:" + startTs);
 
         // 手动注入bean
         MaraService maraService = SpringContextUtil.getBean(MaraService.class);
 
         List<SD001SCREQ> maraList = maraService.selectFormatMaraByStatusNo();
+        if (maraList.size() > 0) {
+            logs("XXL-JOB-SD001, 获取到源数据:" + maraList.toString());
 
-        logs("XXL-JOB, 获取到源数据:" + maraList.toString());
+            String PoUrl = "SD001";
+            logs("XXL-JOB-SD001, 开始请求PO连接：" + PoUrl);
 
-        String PoUrl = "SD001";
-        logs("XXL-JOB 开始请求PO连接：" + PoUrl);
-
-        runJobThread(maraList, PoUrl, startTs);
+            runJobThread(maraList, PoUrl, startTs);
+        } else {
+            logs("XXL-JOB-SD001, 没有需要执行数据");
+        }
         return new ReturnY(ReturnY.SUCCESS_CODE, "end");
     }
 
     public ReturnY SD002() throws Exception {
         Long startTs = System.currentTimeMillis();
-        logs("XXL-JOB, Join Method " + " 任务开始时间:" + startTs);
+        logs("XXL-JOB-SD002, Join Method " + " 任务开始时间:" + startTs);
 
         // 手动注入bean
         VbapService vbapService = SpringContextUtil.getBean(VbapService.class);
 
         List<SD002SCREQ> vbapList = vbapService.selectFormatVbapByStatusNo();
+        if (vbapList.size() > 0) {
+            logs("XXL-JOB-SD002, 获取到源数据:" + vbapList.toString());
 
-        logs("XXL-JOB, 获取到源数据:" + vbapList.toString());
+            String PoUrl = "SD002";
+            logs("XXL-JOB-SD002, 开始请求PO连接：" + PoUrl);
 
-        String PoUrl = "SD002";
-        logs("XXL-JOB 开始请求PO连接：" + PoUrl);
-
-        runJobThread(vbapList, PoUrl, startTs);
+            runJobThread(vbapList, PoUrl, startTs);
+        } else {
+            logs("XXL-JOB-SD002, 没有需要执行数据");
+        }
         return new ReturnY(ReturnY.SUCCESS_CODE, "end");
     }
 
     public ReturnY SD003() throws Exception {
         Long startTs = System.currentTimeMillis();
-        logs("XXL-JOB, Join Method " + " 任务开始时间:" + startTs);
+        logs("XXL-JOB-SD003, Join Method " + " 任务开始时间:" + startTs);
 
         // 手动注入bean
         VbakService vbakService = SpringContextUtil.getBean(VbakService.class);
 
         List<SD003SCREQ> vbakList = vbakService.selectFormatVbakByStatusNo();
+        if (vbakList.size() > 0) {
+            logs("XXL-JOB-SD003, 获取到源数据:" + vbakList.toString());
 
-        logs("XXL-JOB, 获取到源数据:" + vbakList.toString());
+            String PoUrl = "SD001";
+            logs("XXL-JOB-SD003, 开始请求PO连接：" + PoUrl);
 
-        String PoUrl = "SD001";
-        logs("XXL-JOB 开始请求PO连接：" + PoUrl);
-
-        runJobThread(vbakList, PoUrl, startTs);
+            runJobThread(vbakList, PoUrl, startTs);
+        } else {
+            logs("XXL-JOB-SD003, 没有需要执行数据");
+        }
         return new ReturnY(ReturnY.SUCCESS_CODE, "end");
     }
 
