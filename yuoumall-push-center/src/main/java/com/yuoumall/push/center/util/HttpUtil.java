@@ -1,6 +1,6 @@
 package com.yuoumall.push.center.util;
 
-import com.yuoumall.push.center.model.ReturnT;
+import com.yuoumall.push.center.model.ReturnY;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
@@ -91,7 +91,7 @@ public class HttpUtil {
         }
     }
 
-    public static ReturnT sendDatas(String path, Object object) {
+    public static ReturnY sendDatas(String path, Object object) {
         Long startTs = System.currentTimeMillis();
         String PoUrl = "/RESTAdapter/" + path;
         logs("开始请求PO连接：" + PoUrl);
@@ -101,7 +101,7 @@ public class HttpUtil {
         if (result == null) {
             Long endTs = System.currentTimeMillis();
             logs("请求PO异常, 结束, 耗时 :" + (endTs - startTs));
-            return new ReturnT(ReturnT.FAIL_CODE, "请求PO异常, 结束");
+            return new ReturnY(ReturnY.FAIL_CODE, "请求PO异常, 结束");
         }
 
         logs("获取到的PO返回参数 :" + result);
@@ -116,7 +116,7 @@ public class HttpUtil {
         }
         Long endTs = System.currentTimeMillis();
         logs("结束，耗时 :" + (endTs - startTs));
-        return new ReturnT(ReturnT.SUCCESS_CODE, rtcod, result);
+        return new ReturnY(ReturnY.SUCCESS_CODE, rtcod, result);
     }
 
     public static void logs(String msg) {

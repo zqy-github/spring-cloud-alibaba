@@ -59,19 +59,25 @@ public class VbapServiceImpl implements VbapService {
 
                 HeadVbap headVbap = new HeadVbap();
                 BeanUtils.copyProperties(item, headVbap);
-                vbap.setHEAD(headVbap);
+                vbap.setHead(headVbap);
 
+                List<ItemVbap> itemVbapList = null;
                 ItemVbap itemVbap = new ItemVbap();
                 BeanUtils.copyProperties(item, itemVbap);
-                vbap.setITEM(itemVbap);
+                itemVbapList.add(itemVbap);
+                vbap.setItem(itemVbapList);
 
+                List<BplnVabp> bplnVabpList = null;
                 BplnVabp bplnVabp = new BplnVabp();
                 BeanUtils.copyProperties(item, bplnVabp);
-                vbap.setBPLN(bplnVabp);
+                bplnVabpList.add(bplnVabp);
+                vbap.setBpln(bplnVabpList);
 
+                List<PrcdVabp> prcdVabpList = null;
                 PrcdVabp prcdVabp = new PrcdVabp();
                 BeanUtils.copyProperties(item, prcdVabp);
-                vbap.setPRCD(prcdVabp);
+                prcdVabpList.add(prcdVabp);
+                vbap.setPrcd(prcdVabpList);
 
                 SD002SCREQ screq = new SD002SCREQ();
                 screq.setDT_SD002_SC_REQ(vbap);

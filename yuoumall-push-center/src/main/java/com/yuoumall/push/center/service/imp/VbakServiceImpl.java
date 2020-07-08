@@ -38,15 +38,19 @@ public class VbakServiceImpl implements VbakService {
 
                 HeadVbak headVbak = new HeadVbak();
                 BeanUtils.copyProperties(item, headVbak);
-                vbak.setHEAD(headVbak);
+                vbak.setHead(headVbak);
 
+                List<ItemVbak> itemVbakList = null;
                 ItemVbak itemvbak = new ItemVbak();
                 BeanUtils.copyProperties(item, itemvbak);
-                vbak.setITEM(itemvbak);
+                itemVbakList.add(itemvbak);
+                vbak.setItem(itemVbakList);
 
+                List<PrcdVbak> prcdVbakList = null;
                 PrcdVbak prcdVbak = new PrcdVbak();
                 BeanUtils.copyProperties(item, prcdVbak);
-                vbak.setPRCD(prcdVbak);
+                prcdVbakList.add(prcdVbak);
+                vbak.setPrcd(prcdVbakList);
 
                 SD003SCREQ screq = new SD003SCREQ();
                 screq.setDT_SD003_SC_REQ(vbak);

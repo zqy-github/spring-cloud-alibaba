@@ -5,6 +5,8 @@ import com.yuoumall.push.center.entity.bo.SD001.ItemMara;
 import com.yuoumall.push.center.entity.bo.SD001.PrcdMara;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @Author ZQY
  * @Date 2020/7/3
@@ -13,7 +15,7 @@ import lombok.Data;
  */
 @Data
 public class RqHttpMara {
-    private HeadMara HEAD;
-    private ItemMara ITEM;
-    private PrcdMara PRCD;
+    private HeadMara head;
+    private List<ItemMara> item;
+    private List<PrcdMara> prcd;
 }

@@ -1,9 +1,8 @@
 package com.yuoumall.push.center.util;
 
 import com.yuoumall.push.center.jobhandler.POJobHandler;
-import com.yuoumall.push.center.model.ReturnT;
+import com.yuoumall.push.center.model.ReturnY;
 import lombok.SneakyThrows;
-import net.sf.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -24,7 +23,7 @@ public class JobThread {
                 Runnable r = new Runnable() {
                     @SneakyThrows
                     public void run() {
-                        ReturnT result = HttpUtil.sendDatas(PoUrl, object);
+                        ReturnY result = HttpUtil.sendDatas(PoUrl, object);
                         String inMsg = "XXL-JOB, 获取到的PO返回参数 :" + result.toString();
                         POJobHandler.logs(inMsg);
                     }

@@ -61,15 +61,19 @@ public class MaraServiceImpl implements MaraService {
 
                 HeadMara headMara = new HeadMara();
                 BeanUtils.copyProperties(item, headMara);
-                mara.setHEAD(headMara);
+                mara.setHead(headMara);
 
+                List<ItemMara> itemMaraList = null;
                 ItemMara itemMara = new ItemMara();
                 BeanUtils.copyProperties(item, itemMara);
-                mara.setITEM(itemMara);
+                itemMaraList.add(itemMara);
+                mara.setItem(itemMaraList);
 
+                List<PrcdMara> prcdMaraList = null;
                 PrcdMara prcdMara = new PrcdMara();
                 BeanUtils.copyProperties(item, prcdMara);
-                mara.setPRCD(prcdMara);
+                prcdMaraList.add(prcdMara);
+                mara.setPrcd(prcdMaraList);
 
                 SD001SCREQ screq = new SD001SCREQ();
                 screq.setDT_SD001_SC_REQ(mara);

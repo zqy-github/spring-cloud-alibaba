@@ -6,6 +6,8 @@ import com.yuoumall.push.center.entity.bo.SD002.ItemVbap;
 import com.yuoumall.push.center.entity.bo.SD002.PrcdVabp;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @Author ZQY
  * @Date 2020/7/3
@@ -14,8 +16,8 @@ import lombok.Data;
  */
 @Data
 public class RqHttpVbap {
-    private HeadVbap HEAD;
-    private ItemVbap ITEM;
-    private PrcdVabp PRCD;
-    private BplnVabp BPLN;
+    private HeadVbap head;
+    private List<ItemVbap> item;
+    private List<PrcdVabp> prcd;
+    private List<BplnVabp> bpln;
 }

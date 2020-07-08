@@ -1,6 +1,6 @@
 package com.yuoumall.push.center.controller;
 
-import com.yuoumall.push.center.model.ReturnT;
+import com.yuoumall.push.center.model.ReturnY;
 import com.yuoumall.push.center.entity.bto.SD001.SD001SCREQ;
 import com.yuoumall.push.center.entity.bto.SD002.SD002SCREQ;
 import com.yuoumall.push.center.entity.bto.SD003.SD003SCREQ;
@@ -28,31 +28,31 @@ public class TransferController {
 
     @ApiOperation(value = "SD001-销售订单创建接口")
     @PostMapping("/SD001")
-    public ReturnT SD001(@RequestBody SD001SCREQ mara) {
-        ReturnT returnT = null;
+    public ReturnY SD001(@RequestBody SD001SCREQ mara) {
+        ReturnY ReturnY = null;
         if (mara.getDT_SD001_SC_REQ() != null) {
-            returnT = HttpUtil.sendDatas("SD001", mara);
+            ReturnY = HttpUtil.sendDatas("SD001", mara);
         }
-        return returnT == null ? new ReturnT(ReturnT.FAIL_CODE, "请求参数异常") : returnT;
+        return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }
 
     @ApiOperation(value = "SD002-服务订单创建接口")
     @PostMapping("/SD002")
-    public ReturnT SD002(@RequestBody SD002SCREQ vbap) {
-        ReturnT returnT = null;
+    public ReturnY SD002(@RequestBody SD002SCREQ vbap) {
+        ReturnY ReturnY = null;
         if (vbap.getDT_SD002_SC_REQ() != null) {
-            returnT = HttpUtil.sendDatas("SD002", vbap);
+            ReturnY = HttpUtil.sendDatas("SD002", vbap);
         }
-        return returnT == null ? new ReturnT(ReturnT.FAIL_CODE, "请求参数异常") : returnT;
+        return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }
 
     @ApiOperation(value = "SD003-退货订单创建接口")
     @PostMapping("/SD003")
-    public ReturnT SD003(@RequestBody SD003SCREQ vbak) {
-        ReturnT returnT = null;
+    public ReturnY SD003(@RequestBody SD003SCREQ vbak) {
+        ReturnY ReturnY = null;
         if (vbak.getDT_SD003_SC_REQ() != null) {
-            returnT = HttpUtil.sendDatas("SD003", vbak);
+            ReturnY = HttpUtil.sendDatas("SD003", vbak);
         }
-        return returnT == null ? new ReturnT(ReturnT.FAIL_CODE, "请求参数异常") : returnT;
+        return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }
 }
