@@ -14,7 +14,7 @@ import lombok.Data;
 public class Vbap {
     @Id
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     /**
      * 订单类型

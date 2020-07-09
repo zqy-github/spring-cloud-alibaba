@@ -12,6 +12,8 @@ import lombok.Data;
 
 @Data
 public class HeadVbak {
+
+    private Long id;
     /**
      * 订单类型
      */

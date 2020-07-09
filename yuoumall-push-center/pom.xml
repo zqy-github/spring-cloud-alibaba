@@ -28,6 +28,7 @@
         <httpcomponents.version>4.5.12</httpcomponents.version>
         <swagger2.version>2.9.2</swagger2.version>
         <spring-cloud-context.version>2.0.4.RELEASE</spring-cloud-context.version>
+        <log4j.version>2.12.1</log4j.version>
     </properties>
 
     <dependencies>
@@ -42,7 +43,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- bootstrap -->
+        <!-- bootstrap 配置bootstrap.yml -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-context</artifactId>
@@ -128,6 +129,12 @@
             <version>${swagger2.version}</version>
         </dependency>
 
+        <!-- log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
 
     </dependencies>
 

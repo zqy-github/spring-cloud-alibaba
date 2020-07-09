@@ -14,4 +14,6 @@ import java.util.List;
 @org.apache.ibatis.annotations.Mapper
 public interface VbapMapper extends Mapper<Vbap> {
     List<Vbap> selectFormatVbapByStatusNo();
+
+    void updateVbapStatusYes(Long id);
 }

@@ -23,4 +23,10 @@ public interface MaraService {
      * @return
      */
     List<SD001SCREQ> selectFormatMaraByStatusNo();
+
+    /**
+     * 更新状态为1
+     * @param id
+     */
+    void updateMaraStatusYes(Long id);
 }

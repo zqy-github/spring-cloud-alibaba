@@ -48,9 +48,9 @@ public class POJobHandler extends IJobHandler {
     }
 
     public ReturnY SD001() throws Exception {
+        logs("----------------  XXL-JOB-SD001 start -------------------------");
         Long startTs = System.currentTimeMillis();
         logs("XXL-JOB-SD001, Join Method " + " 任务开始时间:" + startTs);
-
         // 手动注入bean
         MaraService maraService = SpringContextUtil.getBean(MaraService.class);
 
@@ -65,13 +65,14 @@ public class POJobHandler extends IJobHandler {
         } else {
             logs("XXL-JOB-SD001, 没有需要执行数据");
         }
+        logs("----------------  XXL-JOB-SD001 end-------------------------");
         return new ReturnY(ReturnY.SUCCESS_CODE, "end");
     }
 
     public ReturnY SD002() throws Exception {
+        logs("----------------  XXL-JOB-SD002 start-------------------------");
         Long startTs = System.currentTimeMillis();
         logs("XXL-JOB-SD002, Join Method " + " 任务开始时间:" + startTs);
-
         // 手动注入bean
         VbapService vbapService = SpringContextUtil.getBean(VbapService.class);
 
@@ -86,10 +87,12 @@ public class POJobHandler extends IJobHandler {
         } else {
             logs("XXL-JOB-SD002, 没有需要执行数据");
         }
+        logs("----------------  XXL-JOB-SD002 end-------------------------");
         return new ReturnY(ReturnY.SUCCESS_CODE, "end");
     }
 
     public ReturnY SD003() throws Exception {
+        logs("----------------  XXL-JOB-SD003 start-------------------------");
         Long startTs = System.currentTimeMillis();
         logs("XXL-JOB-SD003, Join Method " + " 任务开始时间:" + startTs);
 
@@ -107,6 +110,7 @@ public class POJobHandler extends IJobHandler {
         } else {
             logs("XXL-JOB-SD003, 没有需要执行数据");
         }
+        logs("----------------  XXL-JOB-SD003 end-------------------------");
         return new ReturnY(ReturnY.SUCCESS_CODE, "end");
     }
 

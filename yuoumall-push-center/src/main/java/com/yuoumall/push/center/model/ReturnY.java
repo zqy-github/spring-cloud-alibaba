@@ -1,15 +1,6 @@
 package com.yuoumall.push.center.model;
 
-import java.io.Serializable;
-
-public class ReturnY<T> extends com.xxl.job.core.biz.model.ReturnT implements Serializable {
-    public static final long serialVersionUID = 42L;
-
-    public static final int SUCCESS_CODE = 200;
-    public static final int FAIL_CODE = 500;
-
-    public static final ReturnY<String> SUCCESS = new ReturnY<String>(SUCCESS_CODE, null);
-    public static final ReturnY<String> FAIL = new ReturnY<String>(FAIL_CODE, null);
+public class ReturnY<T> extends com.xxl.job.core.biz.model.ReturnT{
 
     private int code;
     private String msg;
@@ -33,10 +24,6 @@ public class ReturnY<T> extends com.xxl.job.core.biz.model.ReturnT implements Se
         this.code = code;
         this.rtcod = rtcod;
         this.msg = msg;
-    }
-
-    public static ReturnY<String> getFAIL() {
-        return FAIL;
     }
 
     @Override
@@ -74,5 +61,15 @@ public class ReturnY<T> extends com.xxl.job.core.biz.model.ReturnT implements Se
 
     public void setContent(Object content) {
         this.content = (T) content;
+    }
+
+    @Override
+    public String toString() {
+        return "ReturnY{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", rtcod='" + rtcod + '\'' +
+                ", content=" + content +
+                '}';
     }
 }

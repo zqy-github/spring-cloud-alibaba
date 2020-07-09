@@ -48,4 +48,8 @@
   <select id="selectFormatVbapByStatusNo" resultMap="BaseResultMap">
     select * from VBAP where  status = 0 limit 10;
   </select>
+
+  <update id="updateVbapStatusYes" parameterType="long">
+    update VBAP set status = 1 where id = #{id,jdbcType=BIGINT};
+  </update>
 </mapper>

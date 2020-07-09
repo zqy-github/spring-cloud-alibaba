@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import com.yuoumall.push.center.mapper.MaraMapper;
 import com.yuoumall.push.center.service.MaraService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public class MaraServiceImpl implements MaraService {
     @Override
     public List<SD001SCREQ> selectFormatMaraByStatusNo() {
         List<Mara> maraList = maraMapper.selectFormatMaraByStatusNo();
-        List<SD001SCREQ> returnList = null;
+        List<SD001SCREQ> returnList = new ArrayList<>();;
         if (maraList.size() > 0) {
             maraList.forEach(item -> {
                 RqHttpMara mara = new RqHttpMara();
@@ -63,13 +64,13 @@ public class MaraServiceImpl implements MaraService {
                 BeanUtils.copyProperties(item, headMara);
                 mara.setHead(headMara);
 
-                List<ItemMara> itemMaraList = null;
+                List<ItemMara> itemMaraList = new ArrayList<>();
                 ItemMara itemMara = new ItemMara();
                 BeanUtils.copyProperties(item, itemMara);
                 itemMaraList.add(itemMara);
                 mara.setItem(itemMaraList);
 
-                List<PrcdMara> prcdMaraList = null;
+                List<PrcdMara> prcdMaraList = new ArrayList<>();
                 PrcdMara prcdMara = new PrcdMara();
                 BeanUtils.copyProperties(item, prcdMara);
                 prcdMaraList.add(prcdMara);
@@ -82,5 +83,10 @@ public class MaraServiceImpl implements MaraService {
             });
         }
         return returnList;
+    }
+
+    @Override
+    public void updateMaraStatusYes(Long id) {
+        maraMapper.updateMaraStatusYes(id);
     }
 }

@@ -12,6 +12,8 @@ import lombok.Data;
 
 @Data
 public class HeadMara {
+
+    private Long id;
     /**
      * 订单类型
      */

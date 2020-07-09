@@ -58,4 +58,8 @@
     <select id="selectFormatMaraByStatusNo" resultMap="BaseResultMap">
         select * from MARA where status = 0 limit 10;
     </select>
+
+    <update id="updateMaraStatusYes" parameterType="long">
+        update MARA set status = 1 where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

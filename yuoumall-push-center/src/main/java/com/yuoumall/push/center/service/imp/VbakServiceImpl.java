@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import com.yuoumall.push.center.mapper.VbakMapper;
 import com.yuoumall.push.center.service.VbakService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public class VbakServiceImpl implements VbakService {
     @Override
     public List<SD003SCREQ> selectFormatVbakByStatusNo() {
         List<Vbak> vbakList = vbakMapper.selectFormatVbakByStatusNo();
-        List<SD003SCREQ> returnList = null;
+        List<SD003SCREQ> returnList = new ArrayList<>();;
         if (vbakList.size() > 0) {
             vbakList.forEach(item -> {
                 RqHttpVbak vbak = new RqHttpVbak();
@@ -40,13 +41,13 @@ public class VbakServiceImpl implements VbakService {
                 BeanUtils.copyProperties(item, headVbak);
                 vbak.setHead(headVbak);
 
-                List<ItemVbak> itemVbakList = null;
+                List<ItemVbak> itemVbakList = new ArrayList<>();
                 ItemVbak itemvbak = new ItemVbak();
                 BeanUtils.copyProperties(item, itemvbak);
                 itemVbakList.add(itemvbak);
                 vbak.setItem(itemVbakList);
 
-                List<PrcdVbak> prcdVbakList = null;
+                List<PrcdVbak> prcdVbakList = new ArrayList<>();
                 PrcdVbak prcdVbak = new PrcdVbak();
                 BeanUtils.copyProperties(item, prcdVbak);
                 prcdVbakList.add(prcdVbak);
@@ -59,5 +60,10 @@ public class VbakServiceImpl implements VbakService {
             });
         }
         return returnList;
+    }
+
+    @Override
+    public void updateVbaStatusYes(Long id) {
+        vbakMapper.updateVbaStatusYes(id);
     }
 }

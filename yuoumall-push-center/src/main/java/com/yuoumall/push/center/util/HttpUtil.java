@@ -1,6 +1,9 @@
 package com.yuoumall.push.center.util;
 
 import com.yuoumall.push.center.model.ReturnY;
+import com.yuoumall.push.center.service.MaraService;
+import com.yuoumall.push.center.service.VbakService;
+import com.yuoumall.push.center.service.VbapService;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
@@ -11,6 +14,7 @@ import org.apache.http.impl.client.*;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -111,12 +115,34 @@ public class HttpUtil {
             logs("PO返回参数转换为json :" + resultJson.toString());
             rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
             logs("PO请求返回结果 :" + rtcod);
+            if (rtcod.equalsIgnoreCase("E")) {
+                // 成功 处理数据库结果
+                // 判断id是否为空
+                Object httpObject = ObjectUtil.getFirstFiledValue(object);
+                Object head = ObjectUtil.getFirstFiledValue(httpObject);
+                Long id = (Long) ObjectUtil.getFieldValueByName("id", head);
+                logs("PO请求成功获取到id :" + id + " 修改数据状态");
+                if (id != null) {
+                    String className = object.getClass().getSimpleName();
+                    if(className.equalsIgnoreCase("SD001SCREQ")){
+                        MaraService maraService = SpringContextUtil.getBean(MaraService.class);
+                        maraService.updateMaraStatusYes(id);
+                    }else if(className.equalsIgnoreCase("SD002SCREQ")){
+                        VbapService vbapService = SpringContextUtil.getBean(VbapService.class);
+                        vbapService.updateVbapStatusYes(id);
+                    }else if(className.equalsIgnoreCase("SD003SCREQ")){
+                        VbakService vbakService = SpringContextUtil.getBean(VbakService.class);
+                        vbakService.updateVbaStatusYes(id);
+                    }
+                }
+            }
         } catch (Exception e) {
             logs("PO返回参数转换为json异常, 结束");
         }
         Long endTs = System.currentTimeMillis();
         logs("结束，耗时 :" + (endTs - startTs));
-        return new ReturnY(ReturnY.SUCCESS_CODE, rtcod, result);
+        ReturnY returnY =  new ReturnY(ReturnY.SUCCESS_CODE, rtcod, result);
+        return returnY;
     }
 
     public static void logs(String msg) {

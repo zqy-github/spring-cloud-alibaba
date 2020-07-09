@@ -17,4 +17,10 @@ public interface VbakService{
      * @return
      */
     List<SD003SCREQ> selectFormatVbakByStatusNo();
+
+    /**
+     * 更新状态为1
+     * @param id
+     */
+    void updateVbaStatusYes(Long id);
 }

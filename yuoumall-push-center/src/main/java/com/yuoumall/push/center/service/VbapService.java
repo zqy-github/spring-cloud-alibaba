@@ -20,4 +20,10 @@ public interface VbapService {
      * @return
      */
     List<SD002SCREQ> selectFormatVbapByStatusNo();
+
+    /**
+     * 更新状态为1
+     * @param id
+     */
+    void updateVbapStatusYes(Long id);
 }
