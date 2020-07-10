@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuoumall.push.center.mapper.ServiceChargeMapper">
+  <resultMap id="BaseResultMap" type="com.yuoumall.push.center.entity.bo.FI011.ServiceCharge">
+    <!--@mbg.generated generated on Fri Jul 10 16:56:43 CST 2020.-->
+    <!--@Table SERVICECHARGE-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="BUCLS" jdbcType="VARCHAR" property="bucls" />
+    <result column="BUTYP" jdbcType="VARCHAR" property="butyp" />
+    <result column="REFNO" jdbcType="VARCHAR" property="refno" />
+    <result column="BUKRS" jdbcType="VARCHAR" property="bukrs" />
+    <result column="GJAHR" jdbcType="VARCHAR" property="gjahr" />
+    <result column="BLDAT" jdbcType="VARCHAR" property="bldat" />
+    <result column="BUDAT" jdbcType="VARCHAR" property="budat" />
+    <result column="WAERS" jdbcType="VARCHAR" property="waers" />
+    <result column="BKTXT" jdbcType="VARCHAR" property="bktxt" />
+    <result column="BELNR" jdbcType="VARCHAR" property="belnr" />
+    <result column="XSTOV" jdbcType="VARCHAR" property="xstov" />
+    <result column="STGRD" jdbcType="VARCHAR" property="stgrd" />
+    <result column="OPNAM" jdbcType="VARCHAR" property="opnam" />
+    <result column="BUITM" jdbcType="VARCHAR" property="buitm" />
+    <result column="LIFNR" jdbcType="VARCHAR" property="lifnr" />
+    <result column="ZZCONNO" jdbcType="VARCHAR" property="zzconno" />
+    <result column="KOSTL" jdbcType="VARCHAR" property="kostl" />
+    <result column="WRBTR" jdbcType="VARCHAR" property="wrbtr" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Fri Jul 10 16:56:43 CST 2020.-->
+    id, BUCLS, BUTYP, REFNO, BUKRS, GJAHR, BLDAT, BUDAT, WAERS, BKTXT, BELNR, XSTOV, 
+    STGRD, OPNAM, BUITM, LIFNR, ZZCONNO, KOSTL, WRBTR, `status`
+  </sql>
+
+  <select id="selectFormatRebateByStatusNo" resultMap="BaseResultMap">
+    select * from SERVICECHARGE where status = 0 limit 10;
+  </select>
+
+  <update id="updateServiceChargeStatusYes" parameterType="long">
+    update SERVICECHARGE set status = 1 where id = #{id,jdbcType=BIGINT};
+  </update>
+</mapper>

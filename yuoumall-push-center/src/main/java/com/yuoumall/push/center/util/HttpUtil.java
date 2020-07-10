@@ -1,9 +1,7 @@
 package com.yuoumall.push.center.util;
 
 import com.yuoumall.push.center.model.ReturnY;
-import com.yuoumall.push.center.service.MaraService;
-import com.yuoumall.push.center.service.VbakService;
-import com.yuoumall.push.center.service.VbapService;
+import com.yuoumall.push.center.service.*;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
@@ -115,7 +113,7 @@ public class HttpUtil {
             logs("PO返回参数转换为json :" + resultJson.toString());
             rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
             logs("PO请求返回结果 :" + rtcod);
-            if (rtcod.equalsIgnoreCase("E")) {
+            if (rtcod.equalsIgnoreCase("S")) {
                 // 成功 处理数据库结果
                 // 判断id是否为空
                 Object httpObject = ObjectUtil.getFirstFiledValue(object);
@@ -132,7 +130,16 @@ public class HttpUtil {
                         vbapService.updateVbapStatusYes(id);
                     }else if(className.equalsIgnoreCase("SD003SCREQ")){
                         VbakService vbakService = SpringContextUtil.getBean(VbakService.class);
-                        vbakService.updateVbaStatusYes(id);
+                        vbakService.updateVbaKStatusYes(id);
+                    }else if(className.equalsIgnoreCase("FI010SCREQ")){
+                        RebateService rebateService = SpringContextUtil.getBean(RebateService.class);
+                        rebateService.updateRebateStatusYes(id);
+                    }else if(className.equalsIgnoreCase("FI011SCREQ")){
+                        ServiceChargeService chargeService = SpringContextUtil.getBean(ServiceChargeService.class);
+                        chargeService.updateServiceChargeStatusYes(id);
+                    }else if(className.equalsIgnoreCase("FI029SCREQ")){
+                        ReceiptService receiptService = SpringContextUtil.getBean(ReceiptService.class);
+                        receiptService.updateReceiptStatusYes(id);
                     }
                 }
             }
@@ -141,8 +148,7 @@ public class HttpUtil {
         }
         Long endTs = System.currentTimeMillis();
         logs("结束，耗时 :" + (endTs - startTs));
-        ReturnY returnY =  new ReturnY(ReturnY.SUCCESS_CODE, rtcod, result);
-        return returnY;
+        return new ReturnY(ReturnY.SUCCESS_CODE, rtcod, result);
     }
 
     public static void logs(String msg) {

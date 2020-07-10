@@ -15,5 +15,5 @@ import java.util.List;
 public interface VbakMapper extends Mapper<Vbak> {
     List<Vbak> selectFormatVbakByStatusNo();
 
-    void updateVbaStatusYes(Long id);
+    void updateVbaKStatusYes(Long id);
 }

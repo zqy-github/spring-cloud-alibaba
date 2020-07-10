@@ -53,7 +53,7 @@ public class VbapServiceImpl implements VbapService {
     @Override
     public List<SD002SCREQ> selectFormatVbapByStatusNo() {
         List<Vbap> vbapList = vbapMapper.selectFormatVbapByStatusNo();
-        List<SD002SCREQ> returnList = new ArrayList<>();;
+        List<SD002SCREQ> returnList = new ArrayList<>();
         if (vbapList.size() > 0) {
             vbapList.forEach(item -> {
                 RqHttpVbap vbap = new RqHttpVbap();

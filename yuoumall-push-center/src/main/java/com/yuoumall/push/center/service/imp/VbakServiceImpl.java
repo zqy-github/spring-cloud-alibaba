@@ -32,7 +32,7 @@ public class VbakServiceImpl implements VbakService {
     @Override
     public List<SD003SCREQ> selectFormatVbakByStatusNo() {
         List<Vbak> vbakList = vbakMapper.selectFormatVbakByStatusNo();
-        List<SD003SCREQ> returnList = new ArrayList<>();;
+        List<SD003SCREQ> returnList = new ArrayList<>();
         if (vbakList.size() > 0) {
             vbakList.forEach(item -> {
                 RqHttpVbak vbak = new RqHttpVbak();
@@ -63,7 +63,7 @@ public class VbakServiceImpl implements VbakService {
     }
 
     @Override
-    public void updateVbaStatusYes(Long id) {
-        vbakMapper.updateVbaStatusYes(id);
+    public void updateVbaKStatusYes(Long id) {
+        vbakMapper.updateVbaKStatusYes(id);
     }
 }

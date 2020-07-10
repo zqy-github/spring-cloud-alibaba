@@ -55,7 +55,7 @@ public class MaraServiceImpl implements MaraService {
     @Override
     public List<SD001SCREQ> selectFormatMaraByStatusNo() {
         List<Mara> maraList = maraMapper.selectFormatMaraByStatusNo();
-        List<SD001SCREQ> returnList = new ArrayList<>();;
+        List<SD001SCREQ> returnList = new ArrayList<>();
         if (maraList.size() > 0) {
             maraList.forEach(item -> {
                 RqHttpMara mara = new RqHttpMara();
