@@ -11,10 +11,8 @@ import com.yuoumall.push.center.util.HttpUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import net.sf.json.JSONObject;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author ZQY
@@ -29,22 +27,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "PO")
 public class TransferController {
 
-    @ApiOperation(value = "SD001-销售订单创建接口")
-    @PostMapping("/SD001")
-    public ReturnY SD001(@RequestBody RqHttpMara mara) {
-        ReturnY ReturnY = null;
-        if (mara.getHead() != null) {
-            ReturnY = HttpUtil.sendDatas("SD001", mara);
-        }
-        return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
-    }
-
     @ApiOperation(value = "SD002-服务订单创建接口")
     @PostMapping("/SD002")
     public ReturnY SD002(@RequestBody RqHttpVbap vbap) {
         ReturnY ReturnY = null;
         if (vbap.getHead() != null) {
-            ReturnY = HttpUtil.sendDatas("SD002", vbap);
+            ReturnY = HttpUtil.sendDatas("SD002", vbap, 2);
         }
         return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }
@@ -54,7 +42,7 @@ public class TransferController {
     public ReturnY SD003(@RequestBody RqHttpVbak vbak) {
         ReturnY ReturnY = null;
         if (vbak.getHead() != null) {
-            ReturnY = HttpUtil.sendDatas("SD003", vbak);
+            ReturnY = HttpUtil.sendDatas("SD003", vbak, 2);
         }
         return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }
@@ -64,7 +52,7 @@ public class TransferController {
     public ReturnY FI010(@RequestBody RqHttpRebate rebate) {
         ReturnY ReturnY = null;
         if (rebate.getHead() != null) {
-            ReturnY = HttpUtil.sendDatas("FI010", rebate);
+            ReturnY = HttpUtil.sendDatas("FI010", rebate, 2);
         }
         return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }
@@ -74,17 +62,27 @@ public class TransferController {
     public ReturnY FI011(@RequestBody RqHttpServiceCharge serviceCharge) {
         ReturnY ReturnY = null;
         if (serviceCharge.getHead() != null) {
-            ReturnY = HttpUtil.sendDatas("FI011", serviceCharge);
+            ReturnY = HttpUtil.sendDatas("FI011", serviceCharge, 2);
         }
         return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }
 
     @ApiOperation(value = "FI029-收款接口")
     @PostMapping("/FI029")
-    public ReturnY FI029(@RequestBody RqHttpReceipt receipt) {
+    public ReturnY FI029(@RequestBody JSONObject object) {
         ReturnY ReturnY = null;
-        if (receipt.getHead() != null) {
-            ReturnY = HttpUtil.sendDatas("FI029", receipt);
+        if (!object.isEmpty()) {
+            ReturnY = HttpUtil.sendDatas("FI029", object, 2);
+        }
+        return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
+    }
+
+    @ApiOperation(value = "通用接口 auto/ 后面接接口名 例如：auto/FI029")
+    @PostMapping("/auto/{method}")
+    public ReturnY FI029(@PathVariable("method") String method, @RequestBody JSONObject object) {
+        ReturnY ReturnY = null;
+        if (!object.isEmpty()) {
+            ReturnY = HttpUtil.sendDatas(method, object, 2);
         }
         return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }

@@ -23,7 +23,7 @@ public class JobThread {
                 Runnable r = new Runnable() {
                     @SneakyThrows
                     public void run() {
-                        ReturnY result = HttpUtil.sendDatas(PoUrl, object);
+                        ReturnY result = HttpUtil.sendDatas(PoUrl, object, 1);
                         String inMsg = "XXL-JOB, 获取到的PO返回参数 :" + result.toString();
                         POJobHandler.logs(inMsg);
                     }

@@ -93,7 +93,7 @@ public class HttpUtil {
         }
     }
 
-    public static ReturnY sendDatas(String path, Object object) {
+    public static ReturnY sendDatas(String path, Object object, int type) {
         Long startTs = System.currentTimeMillis();
         String PoUrl = "/RESTAdapter/" + path;
         logs("开始请求PO连接：" + PoUrl);
@@ -113,7 +113,9 @@ public class HttpUtil {
             logs("PO返回参数转换为json :" + resultJson.toString());
             rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
             // 记录请求信息
-            saveOrUpdateData(object, resultJson);
+            if (type == 1) {
+                saveOrUpdateData(object, resultJson, path);
+            }
         } catch (Exception e) {
             logs("PO返回参数转换为json异常, 结束");
         }
@@ -122,33 +124,23 @@ public class HttpUtil {
         return new ReturnY(ReturnY.SUCCESS_CODE, rtcod, result);
     }
 
-    public static void saveOrUpdateData(Object object, JSONObject resultJson) {
-        // 判断id是否为空
-        Object httpObject = ObjectUtil.getFirstFiledValue(object);
-        Object head = ObjectUtil.getFirstFiledValue(httpObject);
-        Long id = (Long) ObjectUtil.getFieldValueByName("id", head);
+    public static void saveOrUpdateData(Object object, JSONObject resultJson, String ifcType) {
+        //获取 TRANS_KEY
+        JSONObject jsonObject = JSONObject.fromObject(JSONObject.fromObject(object).getString("HEAD"));
+        String transKey = (String) jsonObject.get("TRANS_KEY");
 
         String rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
         logs("PO请求返回结果 :" + rtcod);
-
+        SapService sapService = SpringContextUtil.getBean(SapService.class);
         if (rtcod.equalsIgnoreCase("S")) {
             // 成功 处理数据库结果
-            logs("PO请求--成功--！获取到id :" + id + " 修改数据状态");
-            if (id != null) {
-                String className = object.getClass().getSimpleName();
-
-            }
+            logs("PO请求--成功--！获取到transKey :" + transKey + " ifcType:" + ifcType + " 修改数据状态及添加成功日志");
+            sapService.updateStatusSuccess(ifcType, transKey, rtcod);
         } else {
             // 记录失败信息
-            logs("PO请求--失败--！获取到id :" + id + " 修改数据状态");
+            logs("PO请求--失败--！获取到transKey :" + transKey + " ifcType:" + ifcType + " 添加失败日志及次数");
             String rtmsg = resultJson.getJSONObject("RETURN").getString("RTMSG");
-            if (id != null) {
-                String className = object.getClass().getSimpleName();
-                // 获取失败次数
-                Long loseNum = (Long) ObjectUtil.getFieldValueByName("id", head);
-                // 获取失败信息
-                Status status = new Status();
-            }
+            sapService.insertLostNum(ifcType, transKey, rtmsg, rtcod);
         }
     }
 

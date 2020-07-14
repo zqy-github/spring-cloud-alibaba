@@ -39,9 +39,9 @@ public class POJobHandler extends IJobHandler {
         Long startTs = System.currentTimeMillis();
         logs("XXL-JOB-" + method + ", Join Method " + " 任务开始时间:" + startTs);
         // 手动注入bean
-        SapService maraService = SpringContextUtil.getBean(SapService.class);
+        SapService sapService = SpringContextUtil.getBean(SapService.class);
 
-        List<JSONObject> objectList = maraService.selectFormatDataByMethodStatusNo(method);
+        List<JSONObject> objectList = sapService.selectFormatDataByMethodStatusNo(method);
         if (objectList.size() > 0) {
             logs("XXL-JOB-" + method + ", 获取到源数据:" + objectList.toString());
 

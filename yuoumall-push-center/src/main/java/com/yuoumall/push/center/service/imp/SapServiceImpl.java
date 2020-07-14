@@ -78,7 +78,7 @@ public class SapServiceImpl implements SapService {
                         // 获取数据 封装json
                         if (config.getSecType().equalsIgnoreCase("HEAD")) {
                             JSONObject queryObject = queueService.selectDataMapBySql(sql);
-                            object.put(config.getSecType(), queryObject);
+                            object.put("HEAD", queryObject);
                         } else {
                             JSONArray queryObject = queueService.selectDataListBySql(sql);
                             object.put(config.getSecType(), queryObject);
