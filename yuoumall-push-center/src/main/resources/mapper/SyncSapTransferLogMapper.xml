@@ -16,7 +16,7 @@
     </sql>
 
     <insert id="addLog">
-    insert into SYNC_SAP_TRANSFER_LOG(IFC_TYPE, SYNC_KEY, SYNC_STATUS, RET_MSG) value
+    insert into SYNC_SAP_TRANSFER_LOG(IFC_TYPE, SYNC_KEY, SYNC_STATUS, RET_MSG) values
     (#{ifcType,jdbcType=VARCHAR}, #{transKey,jdbcType=VARCHAR}, #{rtcode,jdbcType=VARCHAR}, #{rtmsg,jdbcType=VARCHAR})
   </insert>
 </mapper>

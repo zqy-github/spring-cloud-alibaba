@@ -127,7 +127,7 @@ public class HttpUtil {
     public static void saveOrUpdateData(Object object, JSONObject resultJson, String ifcType) {
         //获取 TRANS_KEY
         JSONObject jsonObject = JSONObject.fromObject(JSONObject.fromObject(object).getString("HEAD"));
-        String transKey = (String) jsonObject.get("TRANS_KEY");
+        String transKey = (String) jsonObject.get("BILLNO");
 
         String rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
         logs("PO请求返回结果 :" + rtcod);

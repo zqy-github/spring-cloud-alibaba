@@ -43,7 +43,6 @@ public class SapServiceImpl implements SapService {
 
     @Override
     public List<JSONObject> selectFormatDataByMethodStatusNo(String method) {
-//        List<JSONObject> maraList = queueService.selectFormatDataByMethodAndFailCount(method);
         // 获取接口配置信息 order条件， limit 条件
         Example example = new Example(SyncSapConfigMain.class);
         example.createCriteria().andEqualTo("ifcType", method);
@@ -66,22 +65,28 @@ public class SapServiceImpl implements SapService {
                 if (configs.size() > 0) {
                     configs.forEach(config -> {
                         // 获取查询sql
-                        String sql = config.getSourceSql();
+                        String sql = config.getSourceSql().replaceAll("\n", "");
                         // 获取查询条件值
                         String transKey = queue.getTransKey();
                         String[] keyList = transKey.split(",");
                         // 封装查询sql
                         for (int i = 0; i < keyList.length; i++) {
                             String oldChar = "$" + (i + 1);
-                            sql = sql.replace(oldChar, keyList[i]);
+                            sql = sql.replace(oldChar,  keyList[i]);
                         }
                         // 获取数据 封装json
                         if (config.getSecType().equalsIgnoreCase("HEAD")) {
                             JSONObject queryObject = queueService.selectDataMapBySql(sql);
                             object.put("HEAD", queryObject);
+
                         } else {
-                            JSONArray queryObject = queueService.selectDataListBySql(sql);
-                            object.put(config.getSecType(), queryObject);
+                            try {
+                                JSONArray queryObject = queueService.selectDataListBySql(sql);
+                                object.put(config.getSecType(), queryObject);
+                            }catch (Exception e){
+                                JSONObject queryObject  = queueService.selectDataMapBySql(sql);
+                                object.put(config.getSecType(), queryObject);
+                            }
                         }
                     });
                 }

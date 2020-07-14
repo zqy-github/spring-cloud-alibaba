@@ -28,12 +28,12 @@
         update SYNC_SAP_QUEUE set FAIL_COUNT = FAIL_COUNT + 1 where IFC_TYPE = #{ifcType,jdbcType=VARCHAR} and TRANS_KEY = #{transKey,jdbcType=VARCHAR}
     </delete>
 
-    <select id="selectDataMapBySql" resultType="java.util.Map">
-        #{sql}
+    <select id="selectDataMapBySql" parameterType="String" resultType="java.util.Map">
+        ${sql}
     </select>
 
-    <select id="selectDataListBySql" resultType="java.util.List">
-        #{sql}
+    <select id="selectDataListBySql" parameterType="String" resultType="java.util.HashMap">
+        ${sql}
     </select>
 
 </mapper>

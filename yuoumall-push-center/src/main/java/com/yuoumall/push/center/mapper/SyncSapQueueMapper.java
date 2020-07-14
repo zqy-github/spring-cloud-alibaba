@@ -21,7 +21,7 @@ public interface SyncSapQueueMapper extends Mapper<SyncSapQueue> {
 
     void addLostNum(@Param("ifcType") String ifcType, @Param("transKey") String transKey);
 
-    Map selectDataMapBySql(String sql);
+    Map selectDataMapBySql(@Param("sql") String sql);
 
-    List selectDataListBySql(String sql);
+    List<Map<String,Object>> selectDataListBySql(@Param("sql") String sql);
 }

@@ -48,7 +48,7 @@ public class SyncSapQueueServiceImpl implements SyncSapQueueService {
 
     @Override
     public JSONArray selectDataListBySql(String sql) {
-        List result = syncSapQueueMapper.selectDataListBySql(sql);
+        List<Map<String,Object>> result = syncSapQueueMapper.selectDataListBySql(sql);
         return JSONArray.fromObject(result);
     }
 }
