@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuoumall.push.center.mapper.SyncSapSaleHeadMapper">
+  <resultMap id="BaseResultMap" type="com.yuoumall.push.center.entity.bo.common.SyncSapSaleHead">
+    <!--@mbg.generated generated on Mon Jul 13 15:09:35 CST 2020.-->
+    <!--@Table SYNC_SAP_SALE_HEAD-->
+    <id column="BILLNO" jdbcType="VARCHAR" property="billno" />
+    <id column="AUART" jdbcType="VARCHAR" property="auart" />
+    <result column="BDATE" jdbcType="TIMESTAMP" property="bdate" />
+    <result column="BCDATE" jdbcType="TIMESTAMP" property="bcdate" />
+    <result column="VKORG" jdbcType="VARCHAR" property="vkorg" />
+    <result column="VTWEG" jdbcType="VARCHAR" property="vtweg" />
+    <result column="SPART" jdbcType="VARCHAR" property="spart" />
+    <result column="VKBUR" jdbcType="VARCHAR" property="vkbur" />
+    <result column="VKGRP" jdbcType="VARCHAR" property="vkgrp" />
+    <result column="KUNNR" jdbcType="VARCHAR" property="kunnr" />
+    <result column="BSTKD" jdbcType="VARCHAR" property="bstkd" />
+    <result column="BSTDK" jdbcType="CHAR" property="bstdk" />
+    <result column="VDATU" jdbcType="CHAR" property="vdatu" />
+    <result column="WAERK" jdbcType="VARCHAR" property="waerk" />
+    <result column="BEDAT" jdbcType="CHAR" property="bedat" />
+    <result column="KURSK" jdbcType="VARCHAR" property="kursk" />
+    <result column="ZTERM" jdbcType="VARCHAR" property="zterm" />
+    <result column="AUGRU" jdbcType="VARCHAR" property="augru" />
+    <result column="LTEXT" jdbcType="VARCHAR" property="ltext" />
+    <result column="NAME1" jdbcType="VARCHAR" property="name1" />
+    <result column="NAME2" jdbcType="VARCHAR" property="name2" />
+    <result column="LAND1" jdbcType="VARCHAR" property="land1" />
+    <result column="REGIO" jdbcType="VARCHAR" property="regio" />
+    <result column="CITY1" jdbcType="VARCHAR" property="city1" />
+    <result column="STREET" jdbcType="VARCHAR" property="street" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Mon Jul 13 15:09:35 CST 2020.-->
+    BILLNO, AUART, BDATE, BCDATE, VKORG, VTWEG, SPART, VKBUR, VKGRP, KUNNR, BSTKD, BSTDK, 
+    VDATU, WAERK, BEDAT, KURSK, ZTERM, AUGRU, LTEXT, NAME1, NAME2, LAND1, REGIO, CITY1, 
+    STREET
+  </sql>
+</mapper>

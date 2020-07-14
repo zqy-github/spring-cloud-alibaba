@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.yuoumall.push.center.entity.bto.SD001.SD001SCREQ;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,20 +95,6 @@ public class ObjectUtil {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return null;
-        }
-    }
-
-    public static void main(String[] args) {
-        Object o = new SD001SCREQ();
-        String firstFileName = o.getClass().getDeclaredFields()[0].getName();
-        String firstLetter = firstFileName.substring(0, 1).toUpperCase();
-        String getter = "get" + firstLetter + firstFileName.substring(1);
-        try {
-            Method method = o.getClass().getMethod(getter, new Class[]{});
-            Object value = method.invoke(o, new Object[]{});
-            System.out.println(value);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
         }
     }
 }

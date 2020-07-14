@@ -1,5 +1,6 @@
 package com.yuoumall.push.center.util;
 
+import com.yuoumall.push.center.entity.bo.common.Status;
 import com.yuoumall.push.center.model.ReturnY;
 import com.yuoumall.push.center.service.*;
 import net.sf.json.JSONObject;
@@ -12,7 +13,6 @@ import org.apache.http.impl.client.*;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -112,43 +112,44 @@ public class HttpUtil {
             JSONObject resultJson = JSONObject.fromObject(result);
             logs("PO返回参数转换为json :" + resultJson.toString());
             rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
-            logs("PO请求返回结果 :" + rtcod);
-            if (rtcod.equalsIgnoreCase("S")) {
-                // 成功 处理数据库结果
-                // 判断id是否为空
-                Object httpObject = ObjectUtil.getFirstFiledValue(object);
-                Object head = ObjectUtil.getFirstFiledValue(httpObject);
-                Long id = (Long) ObjectUtil.getFieldValueByName("id", head);
-                logs("PO请求成功获取到id :" + id + " 修改数据状态");
-                if (id != null) {
-                    String className = object.getClass().getSimpleName();
-                    if(className.equalsIgnoreCase("SD001SCREQ")){
-                        MaraService maraService = SpringContextUtil.getBean(MaraService.class);
-                        maraService.updateMaraStatusYes(id);
-                    }else if(className.equalsIgnoreCase("SD002SCREQ")){
-                        VbapService vbapService = SpringContextUtil.getBean(VbapService.class);
-                        vbapService.updateVbapStatusYes(id);
-                    }else if(className.equalsIgnoreCase("SD003SCREQ")){
-                        VbakService vbakService = SpringContextUtil.getBean(VbakService.class);
-                        vbakService.updateVbaKStatusYes(id);
-                    }else if(className.equalsIgnoreCase("FI010SCREQ")){
-                        RebateService rebateService = SpringContextUtil.getBean(RebateService.class);
-                        rebateService.updateRebateStatusYes(id);
-                    }else if(className.equalsIgnoreCase("FI011SCREQ")){
-                        ServiceChargeService chargeService = SpringContextUtil.getBean(ServiceChargeService.class);
-                        chargeService.updateServiceChargeStatusYes(id);
-                    }else if(className.equalsIgnoreCase("FI029SCREQ")){
-                        ReceiptService receiptService = SpringContextUtil.getBean(ReceiptService.class);
-                        receiptService.updateReceiptStatusYes(id);
-                    }
-                }
-            }
+            // 记录请求信息
+            saveOrUpdateData(object, resultJson);
         } catch (Exception e) {
             logs("PO返回参数转换为json异常, 结束");
         }
         Long endTs = System.currentTimeMillis();
         logs("结束，耗时 :" + (endTs - startTs));
         return new ReturnY(ReturnY.SUCCESS_CODE, rtcod, result);
+    }
+
+    public static void saveOrUpdateData(Object object, JSONObject resultJson) {
+        // 判断id是否为空
+        Object httpObject = ObjectUtil.getFirstFiledValue(object);
+        Object head = ObjectUtil.getFirstFiledValue(httpObject);
+        Long id = (Long) ObjectUtil.getFieldValueByName("id", head);
+
+        String rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
+        logs("PO请求返回结果 :" + rtcod);
+
+        if (rtcod.equalsIgnoreCase("S")) {
+            // 成功 处理数据库结果
+            logs("PO请求--成功--！获取到id :" + id + " 修改数据状态");
+            if (id != null) {
+                String className = object.getClass().getSimpleName();
+
+            }
+        } else {
+            // 记录失败信息
+            logs("PO请求--失败--！获取到id :" + id + " 修改数据状态");
+            String rtmsg = resultJson.getJSONObject("RETURN").getString("RTMSG");
+            if (id != null) {
+                String className = object.getClass().getSimpleName();
+                // 获取失败次数
+                Long loseNum = (Long) ObjectUtil.getFieldValueByName("id", head);
+                // 获取失败信息
+                Status status = new Status();
+            }
+        }
     }
 
     public static void logs(String msg) {

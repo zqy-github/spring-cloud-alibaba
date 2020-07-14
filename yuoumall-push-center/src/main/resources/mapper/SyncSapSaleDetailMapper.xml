@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuoumall.push.center.mapper.SyncSapSaleDetailMapper">
+  <resultMap id="BaseResultMap" type="com.yuoumall.push.center.entity.bo.common.SyncSapSaleDetail">
+    <!--@mbg.generated generated on Mon Jul 13 15:09:19 CST 2020.-->
+    <!--@Table SYNC_SAP_SALE_DETAIL-->
+    <id column="BILLNO" jdbcType="VARCHAR" property="billno" />
+    <id column="POSNR" jdbcType="VARCHAR" property="posnr" />
+    <result column="MATNR" jdbcType="VARCHAR" property="matnr" />
+    <result column="KWMENG" jdbcType="DECIMAL" property="kwmeng" />
+    <result column="VRKME" jdbcType="VARCHAR" property="vrkme" />
+    <result column="CHARG" jdbcType="VARCHAR" property="charg" />
+    <result column="PRCTR" jdbcType="VARCHAR" property="prctr" />
+    <result column="WERKS" jdbcType="VARCHAR" property="werks" />
+    <result column="LGORT" jdbcType="VARCHAR" property="lgort" />
+    <result column="KTGRM" jdbcType="VARCHAR" property="ktgrm" />
+    <result column="TAXM1" jdbcType="VARCHAR" property="taxm1" />
+    <result column="ZZORDNO" jdbcType="VARCHAR" property="zzordno" />
+    <result column="ZZSTORE" jdbcType="VARCHAR" property="zzstore" />
+    <result column="ZZSERVI" jdbcType="VARCHAR" property="zzservi" />
+    <result column="ZZPLATF" jdbcType="VARCHAR" property="zzplatf" />
+    <result column="ZZSUPPL" jdbcType="VARCHAR" property="zzsuppl" />
+    <result column="ZZOR001" jdbcType="VARCHAR" property="zzor001" />
+    <result column="ZZOR002" jdbcType="VARCHAR" property="zzor002" />
+    <result column="ZZORDID" jdbcType="VARCHAR" property="zzordid" />
+    <result column="PARTNER" jdbcType="VARCHAR" property="partner" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Mon Jul 13 15:09:19 CST 2020.-->
+    BILLNO, POSNR, MATNR, KWMENG, VRKME, CHARG, PRCTR, WERKS, LGORT, KTGRM, TAXM1, ZZORDNO, 
+    ZZSTORE, ZZSERVI, ZZPLATF, ZZSUPPL, ZZOR001, ZZOR002, ZZORDID, PARTNER
+  </sql>
+</mapper>

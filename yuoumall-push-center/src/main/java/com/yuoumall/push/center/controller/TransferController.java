@@ -1,9 +1,12 @@
 package com.yuoumall.push.center.controller;
 
+import com.yuoumall.push.center.entity.bto.FI010.RqHttpRebate;
+import com.yuoumall.push.center.entity.bto.FI011.RqHttpServiceCharge;
+import com.yuoumall.push.center.entity.bto.FI029.RqHttpReceipt;
+import com.yuoumall.push.center.entity.bto.SD001.RqHttpMara;
+import com.yuoumall.push.center.entity.bto.SD002.RqHttpVbap;
+import com.yuoumall.push.center.entity.bto.SD003.RqHttpVbak;
 import com.yuoumall.push.center.model.ReturnY;
-import com.yuoumall.push.center.entity.bto.SD001.SD001SCREQ;
-import com.yuoumall.push.center.entity.bto.SD002.SD002SCREQ;
-import com.yuoumall.push.center.entity.bto.SD003.SD003SCREQ;
 import com.yuoumall.push.center.util.HttpUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,9 +31,9 @@ public class TransferController {
 
     @ApiOperation(value = "SD001-销售订单创建接口")
     @PostMapping("/SD001")
-    public ReturnY SD001(@RequestBody SD001SCREQ mara) {
+    public ReturnY SD001(@RequestBody RqHttpMara mara) {
         ReturnY ReturnY = null;
-        if (mara.getDT_SD001_SC_REQ() != null) {
+        if (mara.getHead() != null) {
             ReturnY = HttpUtil.sendDatas("SD001", mara);
         }
         return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
@@ -38,9 +41,9 @@ public class TransferController {
 
     @ApiOperation(value = "SD002-服务订单创建接口")
     @PostMapping("/SD002")
-    public ReturnY SD002(@RequestBody SD002SCREQ vbap) {
+    public ReturnY SD002(@RequestBody RqHttpVbap vbap) {
         ReturnY ReturnY = null;
-        if (vbap.getDT_SD002_SC_REQ() != null) {
+        if (vbap.getHead() != null) {
             ReturnY = HttpUtil.sendDatas("SD002", vbap);
         }
         return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
@@ -48,10 +51,40 @@ public class TransferController {
 
     @ApiOperation(value = "SD003-退货订单创建接口")
     @PostMapping("/SD003")
-    public ReturnY SD003(@RequestBody SD003SCREQ vbak) {
+    public ReturnY SD003(@RequestBody RqHttpVbak vbak) {
         ReturnY ReturnY = null;
-        if (vbak.getDT_SD003_SC_REQ() != null) {
+        if (vbak.getHead() != null) {
             ReturnY = HttpUtil.sendDatas("SD003", vbak);
+        }
+        return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
+    }
+
+    @ApiOperation(value = "FI010-销售返利接口")
+    @PostMapping("/FI010")
+    public ReturnY FI010(@RequestBody RqHttpRebate rebate) {
+        ReturnY ReturnY = null;
+        if (rebate.getHead() != null) {
+            ReturnY = HttpUtil.sendDatas("FI010", rebate);
+        }
+        return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
+    }
+
+    @ApiOperation(value = "FI011-服务费接口")
+    @PostMapping("/FI011")
+    public ReturnY FI011(@RequestBody RqHttpServiceCharge serviceCharge) {
+        ReturnY ReturnY = null;
+        if (serviceCharge.getHead() != null) {
+            ReturnY = HttpUtil.sendDatas("FI011", serviceCharge);
+        }
+        return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
+    }
+
+    @ApiOperation(value = "FI029-收款接口")
+    @PostMapping("/FI029")
+    public ReturnY FI029(@RequestBody RqHttpReceipt receipt) {
+        ReturnY ReturnY = null;
+        if (receipt.getHead() != null) {
+            ReturnY = HttpUtil.sendDatas("FI029", receipt);
         }
         return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }

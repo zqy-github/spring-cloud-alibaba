@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuoumall.push.center.mapper.SyncSapSaleHeadItem1Mapper">
+  <resultMap id="BaseResultMap" type="com.yuoumall.push.center.entity.bo.common.SyncSapSaleHeadItem1">
+    <!--@mbg.generated generated on Mon Jul 13 15:09:44 CST 2020.-->
+    <!--@Table SYNC_SAP_SALE_HEAD_ITEM1-->
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="BILLNO" jdbcType="VARCHAR" property="billno" />
+    <result column="AFDAT" jdbcType="CHAR" property="afdat" />
+    <result column="FPROZ" jdbcType="CHAR" property="fproz" />
+    <result column="FAKWR" jdbcType="DECIMAL" property="fakwr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Mon Jul 13 15:09:44 CST 2020.-->
+    ID, BILLNO, AFDAT, FPROZ, FAKWR
+  </sql>
+</mapper>
