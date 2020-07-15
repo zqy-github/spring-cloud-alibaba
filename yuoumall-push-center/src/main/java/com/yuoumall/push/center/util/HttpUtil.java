@@ -128,18 +128,17 @@ public class HttpUtil {
         //获取 TRANS_KEY
         JSONObject jsonObject = JSONObject.fromObject(JSONObject.fromObject(object).getString("HEAD"));
         String transKey = (String) jsonObject.get("BILLNO");
-
+        String rtmsg = resultJson.toString();
         String rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
         logs("PO请求返回结果 :" + rtcod);
         SapService sapService = SpringContextUtil.getBean(SapService.class);
         if (rtcod.equalsIgnoreCase("S")) {
             // 成功 处理数据库结果
             logs("PO请求--成功--！获取到transKey :" + transKey + " ifcType:" + ifcType + " 修改数据状态及添加成功日志");
-            sapService.updateStatusSuccess(ifcType, transKey, rtcod);
+            sapService.updateStatusSuccess(ifcType, transKey, rtmsg, rtcod);
         } else {
             // 记录失败信息
             logs("PO请求--失败--！获取到transKey :" + transKey + " ifcType:" + ifcType + " 添加失败日志及次数");
-            String rtmsg = resultJson.getJSONObject("RETURN").getString("RTMSG");
             sapService.insertLostNum(ifcType, transKey, rtmsg, rtcod);
         }
     }

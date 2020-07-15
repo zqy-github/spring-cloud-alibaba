@@ -19,6 +19,7 @@
         select * from SYNC_SAP_QUEUE
         where IFC_TYPE = #{method,jdbcType=VARCHAR}
         and FAIL_COUNT &lt;= #{retryCount,jdbcType=INTEGER}
+        and rownum &lt;= #{requestLimit,jdbcType=INTEGER}
     </select>
     <delete id="deleteByTypeAndKey">
         delete from SYNC_SAP_QUEUE where IFC_TYPE = #{ifcType,jdbcType=VARCHAR} and TRANS_KEY = #{transKey,jdbcType=VARCHAR}

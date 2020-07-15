@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 services:
   xxljob:
     hostname: xxl-job-admin
@@ -8,24 +8,28 @@ services:
     ports:
       - "38000:8080"      #容器端口映射到宿主机的端口
     networks:
-      - push-center
+      backend:
+        aliases:
+          - xxl
 
   pushcenter:
     hostname: yuoumall-push-center
     container_name: yuoumall-push-center
     restart: always
-    build: ./web/       #需要构建的Dockerfile文件
+    build: ./yuoumall/       #需要构建的Dockerfile文件
     ports:
-      - "38001:8081"      #容器端口映射到宿主机的端口
+      - "38001:8090"      #容器端口映射到宿主机的端口
     environment:
-      PARAMS: '--xxl.job.admin.addresses=http://192.168.76.138:38000/xxl-job-admin'
+      PARAMS: '--xxl.job.admin.addresses=http://xxl:8080/xxl-job-admin'
     networks:
-      - push-center
+      backend:
+        aliases:
+          - center
     depends_on:
       - xxljob
 
 networks:
-  push-center:
+  backend:
     driver: bridge
 #    environment:
 #      username: lzz    #springboot项目中连接数据库需要的环境变量

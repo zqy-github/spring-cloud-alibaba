@@ -55,7 +55,7 @@ public class SapServiceImpl implements SapService {
         List<SyncSapConfigMainSlave> configs = configSlaveMapper.selectByExample(examples);
 
         // 获取请求队列 里面包含 where条件的对应值
-        List<SyncSapQueue> queues = queueService.selectFormatDataByMethodAndFailCount(method, configMain.getRetryCount());
+        List<SyncSapQueue> queues = queueService.selectFormatDataByMethodAndFailCount(method, configMain.getRetryCount(), configMain.getRequestLimit());
 
         List<JSONObject> returnList = new ArrayList<>();
         // 封装数据
@@ -98,9 +98,9 @@ public class SapServiceImpl implements SapService {
     }
 
     @Override
-    public void updateStatusSuccess(String ifcType, String transKey, String rtcode) {
+    public void updateStatusSuccess(String ifcType, String transKey, String rtmsg, String rtcod) {
         queueService.deleteByTypeAndKey(ifcType, transKey);
-        logService.addLog(ifcType, transKey, "", rtcode);
+        logService.addLog(ifcType, transKey, rtmsg, rtcod);
     }
 
     @Override

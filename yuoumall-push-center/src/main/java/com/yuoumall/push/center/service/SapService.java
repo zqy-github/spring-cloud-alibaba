@@ -1,7 +1,6 @@
 package com.yuoumall.push.center.service;
 
 import com.yuoumall.push.center.entity.bo.common.Status;
-import com.yuoumall.push.center.entity.bto.SD001.RqHttpMara;
 import net.sf.json.JSONObject;
 
 import java.util.List;
@@ -18,9 +17,10 @@ public interface SapService {
      * 更新状态为
      * @param ifcType
      * @param transKey
-     * @param rtcode
+     * @param rtmsg
+     * @param rtcod
      */
-    void updateStatusSuccess(String ifcType, String transKey, String rtcode);
+    void updateStatusSuccess(String ifcType, String transKey, String rtmsg, String rtcod);
 
     /**
      * 记录失败次数和失败信息

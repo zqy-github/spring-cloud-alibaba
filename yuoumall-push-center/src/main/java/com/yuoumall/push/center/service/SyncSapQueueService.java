@@ -17,9 +17,10 @@ public interface SyncSapQueueService {
      * 查询需要请求接口队列
      * @param method 接口名
      * @param retryCount 获取数量
+     * @param requestLimit
      * @return
      */
-    List<SyncSapQueue> selectFormatDataByMethodAndFailCount(String method, Integer retryCount);
+    List<SyncSapQueue> selectFormatDataByMethodAndFailCount(String method, Integer retryCount, Integer requestLimit);
 
     /**
      * 删除请求队列

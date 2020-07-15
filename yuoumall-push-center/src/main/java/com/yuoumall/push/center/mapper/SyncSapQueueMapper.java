@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @org.apache.ibatis.annotations.Mapper
 public interface SyncSapQueueMapper extends Mapper<SyncSapQueue> {
-    List<SyncSapQueue> selectFormatDataByMethodAndFailCount(@Param("method") String method, @Param("retryCount") Integer retryCount);
+    List<SyncSapQueue> selectFormatDataByMethodAndFailCount(@Param("method") String method, @Param("retryCount") Integer retryCount, @Param("requestLimit") Integer requestLimit);
 
     void deleteByTypeAndKey(@Param("ifcType") String ifcType, @Param("transKey") String transKey);
 
@@ -23,5 +23,5 @@ public interface SyncSapQueueMapper extends Mapper<SyncSapQueue> {
 
     Map selectDataMapBySql(@Param("sql") String sql);
 
-    List<Map<String,Object>> selectDataListBySql(@Param("sql") String sql);
+    List<Map<String, Object>> selectDataListBySql(@Param("sql") String sql);
 }

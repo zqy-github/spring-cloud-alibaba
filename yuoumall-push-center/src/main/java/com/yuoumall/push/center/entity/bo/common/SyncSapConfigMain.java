@@ -56,4 +56,10 @@ public class SyncSapConfigMain {
      */
     @Column(name = "CRT_DATE")
     private Date crtDate;
+
+    /**
+     * 每次请求条数
+     */
+    @Column(name = "REQUEST_LIMIT")
+    private Integer requestLimit;
 }

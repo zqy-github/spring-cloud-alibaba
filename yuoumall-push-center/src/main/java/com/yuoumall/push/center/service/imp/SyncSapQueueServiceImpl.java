@@ -26,8 +26,8 @@ public class SyncSapQueueServiceImpl implements SyncSapQueueService {
     private SyncSapQueueMapper syncSapQueueMapper;
 
     @Override
-    public List<SyncSapQueue> selectFormatDataByMethodAndFailCount(String method, Integer retryCount) {
-        return syncSapQueueMapper.selectFormatDataByMethodAndFailCount(method, retryCount);
+    public List<SyncSapQueue> selectFormatDataByMethodAndFailCount(String method, Integer retryCount, Integer requestLimit) {
+        return syncSapQueueMapper.selectFormatDataByMethodAndFailCount(method, retryCount, requestLimit);
     }
 
     @Override

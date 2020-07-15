@@ -42,14 +42,14 @@ public class POJobHandler extends IJobHandler {
         SapService sapService = SpringContextUtil.getBean(SapService.class);
 
         List<JSONObject> objectList = sapService.selectFormatDataByMethodStatusNo(method);
-        if (objectList.size() > 0) {
+        if (objectList.get(0).get("HEAD") != null) {
             logs("XXL-JOB-" + method + ", 获取到源数据:" + objectList.toString());
 
             logs("XXL-JOB-" + method + ", 开始请求PO连接：" + method);
 
             runJobThread(objectList, method, startTs);
         } else {
-            logs("XXL-JOB-" + method + ", 没有需要执行数据");
+            logs("XXL-JOB-" + method + ", 没有获取到需要执行数据");
         }
         logs("----------------  XXL-JOB-" + method + " end-------------------------");
         return new ReturnT<String>(ReturnY.SUCCESS_CODE, "end");
