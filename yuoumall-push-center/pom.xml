@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>yuoumall-push-center</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>yuoumall-push-center</name>
@@ -18,7 +18,7 @@
     <inceptionYear>2020-Now</inceptionYear>
 
     <properties>
-        <druid.version>1.1.20</druid.version>
+        <druid.version>1.1.0</druid.version>
         <mysql.version>8.0.13</mysql.version>
         <xxl-job.version>2.2.0</xxl-job.version>
         <mybatis.version>2.1.5</mybatis.version>
@@ -49,6 +49,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-context</artifactId>
             <version>${spring-cloud-context.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <!-- Spring Boot End -->
 
@@ -90,7 +95,7 @@
         <!--druid-->
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
+            <artifactId>druid</artifactId>
             <version>${druid.version}</version>
         </dependency>
 

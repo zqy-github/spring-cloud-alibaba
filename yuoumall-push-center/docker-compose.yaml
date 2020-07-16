@@ -1,5 +1,23 @@
 version: "2"
 services:
+  mysql:
+    hostname: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: 'zqy'
+      MYSQL_PASS: '123456'
+    image: mysql:5.7.22
+    ports:
+      - "3306:3306"
+    restart: always
+    volumes:
+      - "/home/root/docker/mysql/data:/var/lib/mysql"
+      - "/home/root/docker/mysql/config:/etc/mysql/conf.d"
+    networks:
+      backend:
+        aliases:
+          - mysql
   xxljob:
     hostname: xxl-job-admin
     container_name: xxl-job-admin
@@ -11,6 +29,8 @@ services:
       backend:
         aliases:
           - xxl
+    depends_on:
+      - mysql
 
   pushcenter:
     hostname: yuoumall-push-center

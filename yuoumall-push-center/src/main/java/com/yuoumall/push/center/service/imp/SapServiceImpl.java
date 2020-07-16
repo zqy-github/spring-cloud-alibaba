@@ -43,6 +43,8 @@ public class SapServiceImpl implements SapService {
 
     @Override
     public List<JSONObject> selectFormatDataByMethodStatusNo(String method) {
+        List<JSONObject> returnList = new ArrayList<>();
+
         // 获取接口配置信息 order条件， limit 条件
         Example example = new Example(SyncSapConfigMain.class);
         example.createCriteria().andEqualTo("ifcType", method);
@@ -51,48 +53,52 @@ public class SapServiceImpl implements SapService {
         // 获取接口配置信息 sql语句 数据表头：HEAD ITEM....
         Example examples = new Example(SyncSapConfigMainSlave.class);
         examples.createCriteria().andEqualTo("ifcType", method);
-        examples.setOrderByClause("ORDER_NUM ASC");
-        List<SyncSapConfigMainSlave> configs = configSlaveMapper.selectByExample(examples);
+        examples.setOrderByClause("ORDER_NUM");
+        try {
+            List<SyncSapConfigMainSlave> configs = configSlaveMapper.selectByExample(example);
 
-        // 获取请求队列 里面包含 where条件的对应值
-        List<SyncSapQueue> queues = queueService.selectFormatDataByMethodAndFailCount(method, configMain.getRetryCount(), configMain.getRequestLimit());
+            // 获取请求队列 里面包含 where条件的对应值
+            List<SyncSapQueue> queues = queueService.selectFormatDataByMethodAndFailCount(method, configMain.getRetryCount(), configMain.getRequestLimit());
 
-        List<JSONObject> returnList = new ArrayList<>();
-        // 封装数据
-        if (queues.size() > 0) {
-            queues.forEach(queue -> {
-                JSONObject object = new JSONObject();
-                if (configs.size() > 0) {
-                    configs.forEach(config -> {
-                        // 获取查询sql
-                        String sql = config.getSourceSql().replaceAll("\n", "");
-                        // 获取查询条件值
-                        String transKey = queue.getTransKey();
-                        String[] keyList = transKey.split(",");
-                        // 封装查询sql
-                        for (int i = 0; i < keyList.length; i++) {
-                            String oldChar = "$" + (i + 1);
-                            sql = sql.replace(oldChar,  keyList[i]);
-                        }
-                        // 获取数据 封装json
-                        if (config.getSecType().equalsIgnoreCase("HEAD")) {
-                            JSONObject queryObject = queueService.selectDataMapBySql(sql);
-                            object.put("HEAD", queryObject);
-
-                        } else {
-                            try {
-                                JSONArray queryObject = queueService.selectDataListBySql(sql);
-                                object.put(config.getSecType(), queryObject);
-                            }catch (Exception e){
-                                JSONObject queryObject  = queueService.selectDataMapBySql(sql);
-                                object.put(config.getSecType(), queryObject);
+            // 封装数据
+             if (queues.size() > 0) {
+                queues.forEach(queue -> {
+                    JSONObject object = new JSONObject();
+                    if (configs.size() > 0) {
+                        configs.forEach(config -> {
+                            // 获取查询sql
+                            String sql = config.getSourceSql().replaceAll("\n", "");
+                            // 获取查询条件值
+                            String transKey = queue.getTransKey();
+                            String[] keyList = transKey.split(",");
+                            // 封装查询sql
+                            for (int i = 0; i < keyList.length; i++) {
+                                String oldChar = "$" + (i + 1);
+                                sql = sql.replace(oldChar, keyList[i]);
                             }
-                        }
-                    });
-                }
-                // 封装返回数据
-                returnList.add(object);
-            });
+                            // 获取数据 封装json
+                            if (config.getSecType().equalsIgnoreCase("HEAD")) {
+                                JSONObject queryObject = queueService.selectDataMapBySql(sql);
+                                object.put("HEAD", queryObject);
+
+                            } else {
+                                try {
+                                    JSONArray queryObject = queueService.selectDataListBySql(sql);
+                                    object.put(config.getSecType(), queryObject);
+                                } catch (Exception e) {
+                                    JSONObject queryObject = queueService.selectDataMapBySql(sql);
+                                    object.put(config.getSecType(), queryObject);
+                                }
+                            }
+                        });
+                    }
+                    object.put("PoUrl", configMain.getSendAddr());
+                    // 封装返回数据
+                    returnList.add(object);
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return returnList;
     }

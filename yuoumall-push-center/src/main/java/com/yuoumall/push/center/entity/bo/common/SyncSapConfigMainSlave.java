@@ -49,4 +49,10 @@ public class SyncSapConfigMainSlave {
      */
     @Column(name = "CRT_DATE")
     private Date crtDate;
+
+    /**
+     *  排序
+     */
+    @Column(name = "ORDER_NUM")
+    private Integer orderNum;
 }

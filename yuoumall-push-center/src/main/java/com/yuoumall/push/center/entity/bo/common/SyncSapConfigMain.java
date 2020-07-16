@@ -58,6 +58,12 @@ public class SyncSapConfigMain {
     private Date crtDate;
 
     /**
+     * 传输地址
+     */
+    @Column(name = "SEND_ADDR")
+    private String sendAddr;
+
+    /**
      * 每次请求条数
      */
     @Column(name = "REQUEST_LIMIT")

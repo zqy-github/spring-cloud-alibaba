@@ -6,16 +6,19 @@
     <!--@Table SYNC_SAP_CONFIG_MAIN_SLAVE-->
     <id column="IFC_TYPE" jdbcType="VARCHAR" property="ifcType" />
     <id column="SEC_TYPE" jdbcType="VARCHAR" property="secType" />
-    <result column="TAB_NAME" jdbcType="VARCHAR" property="tabName" />
-    <result column="TAB_KEY" jdbcType="VARCHAR" property="tabKey" />
-    <result column="REF_TAB" jdbcType="VARCHAR" property="refTab" />
-    <result column="REF_KEY" jdbcType="VARCHAR" property="refKey" />
-    <result column="FLAG_STOP" jdbcType="DECIMAL" property="flagStop" />
-    <result column="CRT_DATE" jdbcType="TIMESTAMP" property="crtDate" />
+    <id column="TAB_NAME" jdbcType="VARCHAR" property="tabName" />
+    <id column="FLAG_STOP" jdbcType="DECIMAL" property="flagStop" />
+    <id column="SOURCE_SQL" jdbcType="CLOB" typeHandler="org.apache.ibatis.type.ClobTypeHandler" property="sourceSql"/>
+    <id column="CRT_DATE" jdbcType="TIMESTAMP" property="crtDate" />
+    <id column="ORDER_NUM" jdbcType="INTEGER" property="orderNum"/>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated generated on Mon Jul 13 15:08:26 CST 2020.-->
-    IFC_TYPE, SEC_TYPE, TAB_NAME, TAB_KEY, REF_TAB, REF_KEY, FLAG_STOP, CRT_DATE
+    IFC_TYPE, SEC_TYPE, TAB_NAME, SOURCE_SQL, FLAG_STOP, CRT_DATE, ORDER_NUM
   </sql>
+
+  <select id="selectFormatDataByIfcType" parameterType="string" resultMap="BaseResultMap">
+    select * from SYNC_SAP_CONFIG_MAIN_SLAVE where IFC_TYPE = #{ifcType,jdbcType=VARCHAR}
+  </select>
 
 </mapper>

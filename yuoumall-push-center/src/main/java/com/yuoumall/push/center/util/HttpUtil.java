@@ -95,9 +95,10 @@ public class HttpUtil {
 
     public static ReturnY sendDatas(String path, Object object, int type) {
         Long startTs = System.currentTimeMillis();
-        String PoUrl = "/RESTAdapter/" + path;
-        logs("开始请求PO连接：" + PoUrl);
         JSONObject jsonObject = JSONObject.fromObject(object);
+        String PoUrl = jsonObject.getString("PoUrl");
+        logs("开始请求PO连接：" + PoUrl);
+
         String result = HttpUtil.httpPostWithjson(PoUrl, jsonObject.toString());
 
         if (result == null) {

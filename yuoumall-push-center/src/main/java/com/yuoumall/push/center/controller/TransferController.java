@@ -77,7 +77,7 @@ public class TransferController {
         return ReturnY == null ? new ReturnY(ReturnY.FAIL_CODE, "请求参数异常") : ReturnY;
     }
 
-    @ApiOperation(value = "通用接口 auto/ 后面接接口名 例如：auto/FI029")
+    @ApiOperation(value = "通用接口 auto/ 后面接接口名 例如：auto/FI029  Json 里面使用PoUrl 封装目标路径")
     @PostMapping("/auto/{method}")
     public ReturnY FI029(@PathVariable("method") String method, @RequestBody JSONObject object) {
         ReturnY ReturnY = null;

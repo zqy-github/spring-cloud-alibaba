@@ -11,10 +11,11 @@
     <result column="ORDER_NUM" jdbcType="DECIMAL" property="orderNum" />
     <result column="FLAG_STOP" jdbcType="DECIMAL" property="flagStop" />
     <result column="CRT_DATE" jdbcType="TIMESTAMP" property="crtDate" />
+    <result column="SEND_ADDR" jdbcType="VARCHAR" property="sendAddr"/>
     <result column="REQUEST_LIMIT" jdbcType="INTEGER" property="requestLimit"/>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated generated on Mon Jul 13 15:09:01 CST 2020.-->
-    IFC_TYPE, IFC_NAME, RETRY_COUNT, RETRY_INTERVAL, ORDER_NUM, FLAG_STOP, CRT_DATE, REQUEST_LIMIT
+    IFC_TYPE, IFC_NAME, RETRY_COUNT, RETRY_INTERVAL, ORDER_NUM, FLAG_STOP, CRT_DATE, SEND_ADDR, REQUEST_LIMIT
   </sql>
 </mapper>
