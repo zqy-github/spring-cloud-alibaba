@@ -45,7 +45,6 @@ public class HttpUtil {
     public static String httpPostWithjson(String url, String json) {
         String result = "";
         HttpUtil util = SpringContextUtil.getBean(HttpUtil.class);
-        url = "http://" + util.hostUrl + ":" + util.hostPort + url;
         HttpPost httpPost = new HttpPost(url);
         logs("初始化请求地址：" + url);
         //创建httpclient对象
