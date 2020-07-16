@@ -1,0 +1,10 @@
+server:
+  port: 50122
+
+po:
+  host:
+    url: 121.199.70.84
+    port: 51000
+  au:
+    username: PIBUSER
+    password: Sap_Pi2020
