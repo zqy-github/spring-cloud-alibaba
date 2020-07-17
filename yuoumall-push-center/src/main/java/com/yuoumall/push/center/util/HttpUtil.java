@@ -46,7 +46,6 @@ public class HttpUtil {
         String result = "";
         HttpUtil util = SpringContextUtil.getBean(HttpUtil.class);
         HttpPost httpPost = new HttpPost(url);
-        logs("初始化请求地址：" + url);
         //创建httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -110,7 +109,6 @@ public class HttpUtil {
         String rtcod = null;
         try {
             JSONObject resultJson = JSONObject.fromObject(result);
-            logs("PO返回参数转换为json :" + resultJson.toString());
             rtcod = resultJson.getJSONObject("RETURN").getString("RTCOD");
             // 记录请求信息
             if (type == 1) {
